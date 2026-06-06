@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Studies — Duoxsoft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0b0c10;
+            --bg-2: #0f1117;
+            --bg-3: #141720;
+            --border: rgba(255, 255, 255, 0.07);
+            --border-md: rgba(255, 255, 255, 0.11);
+            --text: #f0f0f4;
+            --muted: #7a7d8c;
+            --muted-2: #4e5060;
+            --purple: #7d43ce;
+            --purple-lt: #9d68e0;
+            --purple-bg: rgba(125, 67, 206, 0.08);
+            --purple-bg2: rgba(125, 67, 206, 0.14);
+            --grid-line: rgba(255, 255, 255, 0.03);
+            --radius: 12px;
+            --radius-lg: 18px;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        * {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--muted);
+            font-size: 0.975rem;
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            background: rgba(11, 12, 16, 0.88);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: flex-start;
+        }
+
+        .nav-logo img {
+            height: 60px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 10px 22px;
+            background: var(--purple);
+            color: #fff !important;
+            border-radius: var(--radius);
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .nav-cta:hover {
+            background: var(--purple-lt);
+            transform: translateY(-1px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--muted);
+            border-radius: 2px;
+        }
+
+        /* HERO */
+        .hero {
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-30%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, rgba(125, 67, 206, 0.18) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 820px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--purple-lt);
+            border: 1px solid rgba(125, 67, 206, 0.3);
+            background: var(--purple-bg);
+            padding: 6px 14px;
+            border-radius: 40px;
+            margin-bottom: 1.75rem;
+        }
+
+        .hero-eyebrow .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--purple-lt);
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7)
+            }
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--purple-lt);
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-top: 3.5rem;
+        }
+
+        .stat {
+            background: var(--bg-2);
+            padding: 1.25rem 1rem;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted-2);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--purple-lt);
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 3px 9px;
+            border-radius: 4px;
+            background: var(--bg-3);
+            border: 1px solid var(--border);
+            color: var(--muted-2);
+        }
+
+        /* CASE STUDY CARDS */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .case-study {
+            border-top: 1px solid var(--border);
+            padding-top: 3rem;
+        }
+
+        .case-study:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .case-study-number {
+            font-family: monospace;
+            font-size: 0.63rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted-2);
+            margin-bottom: 1rem;
+        }
+
+        .case-study h2 {
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+        }
+
+        .case-study-section {
+            margin-bottom: 3rem;
+        }
+
+        .case-study-section h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--purple-lt);
+        }
+
+        .case-study-section p {
+            max-width: 700px;
+            margin-bottom: 1rem;
+        }
+
+        .impact-list {
+            list-style: none;
+            max-width: 700px;
+        }
+
+        .impact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 0.75rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .impact-list li::before {
+            content: '✔';
+            flex-shrink: 0;
+            color: var(--purple-lt);
+            font-weight: 600;
+            min-width: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 0.75rem;
+            max-width: 700px;
+        }
+
+        /* PARTNERSHIP SECTION */
+        .partnership-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding-top: 2rem;
+        }
+
+        .partnership-section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .partnership-section p {
+            max-width: 700px;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .partnership-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .partnership-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .partnership-list li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--purple-lt);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .partnership-closing {
+            max-width: 700px;
+            margin-top: 3rem;
+        }
+
+        .partnership-closing p {
+            margin-bottom: 1rem;
+        }
+
+        .partnership-closing p strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+        }
+
+        .footer-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-inner p {
+            font-size: 0.78rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            font-size: 0.78rem;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media(max-width:960px) {
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .partnership-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:640px) {
+            section {
+                padding: 5rem 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .case-studies-grid {
+                gap: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/DuoxsoftLogo.png" alt="Duoxsoft"
+                    onerror="this.outerHTML='<span style=\'font-family:Syne,sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:0.05em;color:#f0f0f4\'>DUOXSOFT</span>'" />
+                <h3>Duoxsoft</h3>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="case-studies.html">Case Studies</a></li>
+                <li><a href="index.html#process">Process</a></li>
+                <li><a href="index.html#contact" class="nav-cta">Book a call</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="container">
+            <div class="hero-content fade-up">
+                <div class="hero-eyebrow"><span class="dot"></span>Real Operational Impact</div>
+                <h1>Software Built Around Real Warehouse &amp; Fulfillment Challenges</h1>
+                <p class="hero-desc">For the past two years, Duoxsoft has worked as a dedicated engineering partner for
+                    a European fulfillment operation, building systems that support warehouse workflows, shipping,
+                    ecommerce, search and internal automation.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-label">2+ Years<br>Partnership</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">8+ Production<br>Applications</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Web • Mobile<br>Desktop</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">AI • Search<br>Integrations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- CASE STUDIES -->
+    <section>
+        <div class="container">
+            <div class="case-studies-grid">
+
+                <!-- CASE STUDY 01 -->
+                <div class="case-study fade-up">
+                    <div class="case-study-number">Case Study 01 — Desktop App</div>
+                    <h2>Warehouse Packing &amp; Shipping Automation</h2>
+
+                    <div class="case-study-section">
+                        <h3>The Challenge</h3>
+                        <p>As order volumes increased, warehouse staff relied on multiple manual steps to prepare
+                            shipments, print labels, validate products and communicate with shipping carriers. Packing
+                            errors and fragmented workflows slowed operations and created unnecessary overhead.</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Our Solution</h3>
+                        <p>Duoxsoft developed a custom shipping management platform that became the operational hub of
+                            the packing process. Key capabilities included:</p>
+                        <ul class="impact-list" style="margin-top: 1rem;">
+                            <li>Product scanning and validation</li>
+                            <li>Package weighing</li>
+                            <li>Zebra label printing</li>
+                            <li>PostNL integration</li>
+                            <li>Multi-language support</li>
+                            <li>Shipment tracking</li>
+                            <li>Order management workflows</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Operational Impact</h3>
+                        <ul class="impact-list">
+                            <li>Reduced manual handling during shipment preparation</li>
+                            <li>Centralized warehouse packing workflows</li>
+                            <li>Improved shipment accuracy</li>
+                            <li>Eliminated repetitive data entry</li>
+                            <li>Supported multi-language warehouse teams</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Technology</h3>
+                        <div class="tech-stack">
+                            <span class="tag">.NET 6</span>
+                            <span class="tag">WPF</span>
+                            <span class="tag">PostNL API</span>
+                            <span class="tag">Zebra Printers</span>
+                            <span class="tag">SQL Server</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CASE STUDY 02 -->
+                <div class="case-study fade-up">
+                    <div class="case-study-number">Case Study 02 — Android App</div>
+                    <h2>Mobile Parcel Scanning System</h2>
+
+                    <div class="case-study-section">
+                        <h3>The Challenge</h3>
+                        <p>Warehouse staff needed a faster way to scan and process parcels while moving through daily
+                            operations. Manual lookup and entry slowed workflow efficiency.</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Our Solution</h3>
+                        <p>Developed a dedicated Android application for barcode and QR-based parcel handling with
+                            real-time synchronization to warehouse systems.</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Operational Impact</h3>
+                        <ul class="impact-list">
+                            <li>Faster parcel processing</li>
+                            <li>Improved inventory visibility</li>
+                            <li>Reduced manual lookup time</li>
+                            <li>Better warehouse mobility</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Technology</h3>
+                        <div class="tech-stack">
+                            <span class="tag">Android Native</span>
+                            <span class="tag">QR / Barcode</span>
+                            <span class="tag">Real-time Sync</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CASE STUDY 03 -->
+                <div class="case-study fade-up">
+                    <div class="case-study-number">Case Study 03 — AI Tooling</div>
+                    <h2>AI-Powered Product Translation Workflow</h2>
+
+                    <div class="case-study-section">
+                        <h3>The Challenge</h3>
+                        <p>Managing multilingual product catalogs required repetitive manual translation work and slowed
+                            product onboarding across multiple markets.</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Our Solution</h3>
+                        <p>Built an internal AI-powered translation assistant that allows teams to generate and manage
+                            product translations across multiple languages with minimal manual intervention.</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Operational Impact</h3>
+                        <ul class="impact-list">
+                            <li>Reduced translation workload</li>
+                            <li>Lower operational costs</li>
+                            <li>Faster catalog management</li>
+                            <li>Scalable multilingual workflow</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Technology</h3>
+                        <div class="tech-stack">
+                            <span class="tag">LLM API</span>
+                            <span class="tag">Multi-language</span>
+                            <span class="tag">Catalog Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CASE STUDY 04 -->
+                <div class="case-study fade-up">
+                    <div class="case-study-number">Case Study 04 — Performance</div>
+                    <h2>Enterprise Search Modernization</h2>
+
+                    <div class="case-study-section">
+                        <h3>The Challenge</h3>
+                        <p>Finding products quickly within a growing catalog became increasingly difficult, impacting
+                            both internal operations and customer experience.</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Our Solution</h3>
+                        <p>Implemented Elasticsearch within the client's ecommerce ecosystem to replace slow database
+                            queries and provide fast, relevant product discovery.</p>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Operational Impact</h3>
+                        <ul class="impact-list">
+                            <li>Faster product discovery</li>
+                            <li>Improved search relevance</li>
+                            <li>Better customer experience</li>
+                            <li>Scalable search infrastructure</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-study-section">
+                        <h3>Technology</h3>
+                        <div class="tech-stack">
+                            <span class="tag">Elasticsearch</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">Search Infrastructure</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- PARTNERSHIP SECTION -->
+    <section>
+        <div class="container">
+            <div class="partnership-section fade-up">
+                <h2>Beyond Individual Projects</h2>
+                <h3 style="font-size: 1.2rem; font-weight: 600; color: var(--muted); margin-bottom: 1rem;">A Long-Term
+                    Engineering Partnership</h3>
+                <p>Duoxsoft has worked alongside a European operations company for more than two years, contributing
+                    across every layer of their technical infrastructure.</p>
+
+                <ul class="partnership-list">
+                    <li>Shipping Systems</li>
+                    <li>Warehouse Operations</li>
+                    <li>Mobile Applications</li>
+                    <li>Search Infrastructure</li>
+                    <li>AI Automation</li>
+                    <li>Ecommerce Platforms</li>
+                    <li>Internal Tools</li>
+                </ul>
+
+                <div class="partnership-closing">
+                    <p>We don't simply deliver projects.</p>
+                    <p>We become part of the team responsible for improving operational efficiency over time.</p>
+                    <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);"><strong>Most
+                            agencies sell individual projects.</strong> We embed ourselves into a business and
+                        continuously improve its operations. That's the difference between a contractor and a partner.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <p style="color:var(--muted);">&copy; 2026 Duoxsoft. Logistics software specialists.</p>
+            <div class="footer-links"><a href="https://linkedin.com">LinkedIn</a><a href="index.html">Home</a></div>
+        </div>
+    </footer>
+
+    <script>
+        const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
+        document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    </script>
+</body>
+
+</html>

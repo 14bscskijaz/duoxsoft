@@ -1,197 +1,1521 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DuoxSoft</title>
-  <link rel="stylesheet" href="./style.css">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Duoxsoft — Logistics & Supply Chain Software</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0b0c10;
+      --bg-2: #0f1117;
+      --bg-3: #141720;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-md: rgba(255, 255, 255, 0.11);
+      --text: #f0f0f4;
+      --muted: #7a7d8c;
+      --muted-2: #4e5060;
+      --purple: #7d43ce;
+      --purple-lt: #9d68e0;
+      --purple-bg: rgba(125, 67, 206, 0.08);
+      --purple-bg2: rgba(125, 67, 206, 0.14);
+      --grid-line: rgba(255, 255, 255, 0.03);
+      --radius: 12px;
+      --radius-lg: 18px;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    * {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.975rem;
+      line-height: 1.8;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 6rem 0;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(11, 12, 16, 0.88);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: flex-start;
+    }
+
+    .nav-logo img {
+      height: 60px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      background: var(--purple);
+      color: #fff !important;
+      border-radius: var(--radius);
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nav-cta:hover {
+      background: var(--purple-lt);
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--muted);
+      border-radius: 2px;
+    }
+
+    /* HERO */
+    .hero {
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-30%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(125, 67, 206, 0.18) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple-lt);
+      border: 1px solid rgba(125, 67, 206, 0.3);
+      background: var(--purple-bg);
+      padding: 6px 14px;
+      border-radius: 40px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple-lt);
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7)
+      }
+    }
+
+    .hero h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--purple-lt);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      background: var(--purple);
+      color: #fff;
+      border-radius: var(--radius);
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--purple-lt);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      background: transparent;
+      color: var(--muted);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-md);
+      transition: color 0.2s, border-color 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 3.5rem;
+    }
+
+    .stat {
+      background: var(--bg-2);
+      padding: 1.25rem 1rem;
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-num span {
+      color: var(--purple-lt);
+    }
+
+    .stat-label {
+      font-size: 0.67rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted-2);
+      font-weight: 500;
+    }
+
+    .hero-panel {
+      background: var(--bg-2);
+      border: 1px solid var(--border-md);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .panel-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--purple-bg2);
+      border: 1px solid rgba(125, 67, 206, 0.25);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .panel-icon svg {
+      width: 15px;
+      height: 15px;
+      color: var(--purple-lt);
+    }
+
+    .panel-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .panel-sub {
+      font-size: 0.65rem;
+      color: var(--muted-2);
+      font-family: monospace;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+      animation: blink 2.5s infinite;
+    }
+
+    .panel-rows {
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .panel-row {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-row-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .panel-row-val {
+      font-size: 0.72rem;
+      font-family: monospace;
+      font-weight: 600;
+      color: var(--purple-lt);
+    }
+
+    .panel-row-val.green {
+      color: #34d399;
+    }
+
+    .panel-footer {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .carrier-tags {
+      display: flex;
+      gap: 6px;
+    }
+
+    .carrier-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--purple-lt);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      max-width: 560px;
+      font-size: 1rem;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--muted-2);
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 4rem;
+    }
+
+    .service-card {
+      background: var(--bg-2);
+      padding: 2.5rem 2rem;
+      transition: background 0.2s;
+    }
+
+    .service-card:hover {
+      background: var(--bg-3);
+    }
+
+    .service-card.full {
+      grid-column: span 2;
+    }
+
+    .service-num {
+      font-family: monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted-2);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--purple-bg);
+      border: 1px solid rgba(125, 67, 206, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--purple-lt);
+    }
+
+    .service-card h3 {
+      margin-bottom: 0.65rem;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 1.25rem;
+    }
+
+    /* ── WORK GRID ── */
+    .work-section {
+      padding: 7rem 0;
+    }
+
+    .work-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .work-header-text .section-eyebrow {
+      margin-bottom: 0.75rem;
+    }
+
+    .work-header-text h2 {
+      margin-bottom: 0;
+    }
+
+    .view-all-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border: 1px solid var(--border-md);
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .view-all-link:hover {
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .view-all-link svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    /* Bento-style project grid */
+    .projects-bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .proj {
+      background: var(--bg-2);
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background 0.25s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .proj:hover {
+      background: var(--bg-3);
+    }
+
+    .proj:hover .proj-arrow {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+
+    /* column spans */
+    .proj-c7 {
+      grid-column: span 7;
+    }
+
+    .proj-c5 {
+      grid-column: span 5;
+    }
+
+    .proj-c4 {
+      grid-column: span 4;
+    }
+
+    .proj-c6 {
+      grid-column: span 6;
+    }
+
+    .proj-c3 {
+      grid-column: span 3;
+    }
+
+    .proj-index {
+      font-family: monospace;
+      font-size: 0.63rem;
+      letter-spacing: 0.12em;
+      color: var(--muted-2);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .proj-arrow {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border-md);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .proj-arrow svg {
+      width: 12px;
+      height: 12px;
+      color: var(--purple-lt);
+    }
+
+    .proj-type {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--purple-lt);
+      margin-bottom: 0.6rem;
+    }
+
+    .proj h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      line-height: 1.3;
+    }
+
+    .proj p {
+      font-size: 0.83rem;
+      flex: 1;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: auto;
+      padding-top: 1.25rem;
+    }
+
+    .proj-outcome {
+      margin-top: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .proj-outcome::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--purple-lt);
+      flex-shrink: 0;
+    }
+
+    /* PROCESS */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 4rem;
+    }
+
+    .process-step {
+      background: var(--bg-2);
+      padding: 2rem 1.5rem;
+      transition: background 0.2s;
+    }
+
+    .process-step:hover {
+      background: var(--bg-3);
+    }
+
+    .step-count {
+      font-family: 'Syne', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      -webkit-text-stroke: 1px var(--muted-2);
+      color: transparent;
+    }
+
+    .process-step h3 {
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .process-step p {
+      font-size: 0.82rem;
+    }
+
+    /* WHY */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 4rem;
+    }
+
+    .why-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: border-color 0.2s;
+    }
+
+    .why-card:hover {
+      border-color: rgba(125, 67, 206, 0.3);
+    }
+
+    .why-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--purple-bg);
+      border: 1px solid rgba(125, 67, 206, 0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .why-icon svg {
+      width: 17px;
+      height: 17px;
+      color: var(--purple-lt);
+    }
+
+    .why-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .why-card p {
+      font-size: 0.85rem;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 7rem 0;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cta-glow {
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(125, 67, 206, 0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      max-width: 680px;
+      margin: 0 auto 1.25rem;
+    }
+
+    .cta-section>.container>p {
+      max-width: 520px;
+      margin: 0 auto 3rem;
+      font-size: 1rem;
+    }
+
+    .contact-form {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--bg-2);
+      border: 1px solid var(--border-md);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: left;
+    }
+
+    .form-row {
+      margin-bottom: 1rem;
+    }
+
+    .form-row label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted-2);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-row input,
+    .form-row textarea {
+      width: 100%;
+      background: var(--bg-3);
+      border: 1px solid var(--border-md);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-row input:focus,
+    .form-row textarea:focus {
+      border-color: rgba(125, 67, 206, 0.5);
+    }
+
+    .form-row textarea {
+      height: 110px;
+      resize: vertical;
+    }
+
+    .form-note {
+      font-size: 0.72rem;
+      color: var(--muted-2);
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-inner p {
+      font-size: 0.78rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media(max-width:960px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card.full {
+        grid-column: span 1;
+      }
+
+      .projects-bento {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .proj-c7,
+      .proj-c5,
+      .proj-c4,
+      .proj-c6,
+      .proj-c3 {
+        grid-column: span 1;
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:640px) {
+      section {
+        padding: 5rem 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero {
+        padding: 5rem 0 4rem;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-bento {
+        grid-template-columns: 1fr;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <div class="hero">
-      <div class="container pt-4">
-    <nav class="navbar navbar-expand-lg position-sticky">
-          <a class="navbar-brand" href="#">
-            <img src="./assets/logo.svg" alt="" height="100">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item mx-3 fs-22">
-                <a class="nav-link text-dark" href="#">Home</a>
-              </li>
-              <li class="nav-item mx-3 fs-22">
-                <a class="nav-link text-dark" href="#">About us</a>
-              </li>
-              <li class="nav-item mx-3 fs-22">
-                <a class="nav-link text-dark" href="#">Services</a>
-              </li>
-              <li class="nav-item mx-3 fs-22">
-                <a class="nav-link text-dark" href="#">Work</a>
-              </li>
-              <li class="nav-item mx-3">
-                <a class="btn fs-22 contact-btn" href="#" role="button">Contact Us</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/DuoxsoftLogo.png" alt="Duoxsoft"
+          onerror="this.outerHTML='<span style=\'font-family:Syne,sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:0.05em;color:#f0f0f4\'>DUOXSOFT</span>'" />
+        <h3>Duoxsoft</h3>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact" class="nav-cta">Book a call
+          </a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
     </div>
-    <div class="container banner-area">
-        <div class="banner__content pb-120">
-            <h5 class="splt-txt wow" data-splitting>Your Vision, Our Innovation!</h5>
-            <h1>We Deliver <br> <strong id="typing-text"></strong><span>.</span></h1>
-            <p>Our team is dedicated to turning your ideas into exceptional software solutions that drive success. Trust us to bring your vision to life and elevate your business to new heights.</p>
-            <div class="d-flex align-items-center gap-3">
-                <button class="btn connect-btn">
-                    Connect with Us
-                </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-eyebrow"><span class="dot"></span>Logistics &amp; Supply Chain Software</div>
+          <h1>We build the software that keeps your <em>warehouse moving</em></h1>
+          <p class="hero-desc">Custom WMS platforms, Android scanning apps, desktop shipping stations, Magento
+            storefronts, and AI back-office tooling — built and owned by a dedicated team that works exclusively in
+            logistics.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Book a discovery call <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+            <a href="#work" class="btn-ghost">See our work</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-num">2<span>+</span></div>
+              <div class="stat-label">Years active</div>
             </div>
-        </div>
-    </div>
-  </div>
-  <div class="d-flex justify-content-center align-items-center my-5">
-    <div class="process-section container-fluid mx-md-5">
-      <h2><u>A </u> Throughful Process<span>.</span></h2>
-      <p class="mt-4">Our strategy is simplicity. Yes, go lean and launch fast, but don’t skip steps.</p>
-      <div class="row mt-5">
-        <div class="col-md-3">
-          <div class="d-flex">
-            <img src="./assets/discover.png" alt="Discover" width="40" height="40" class="icon">
-            <h3 class="ml-4 fs-30 fw-bolder">Discover</h3>
+            <div class="stat">
+              <div class="stat-num">8<span>+</span></div>
+              <div class="stat-label">Apps delivered</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">3</div>
+              <div class="stat-label">Carrier APIs</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">3</div>
+              <div class="stat-label">Languages</div>
+            </div>
           </div>
-          <p class="ml-5 pl-3 fs-20 fw-semibold">First we listen and 'strip down' your idea to reveal the core of your app's value proposition.</p>
         </div>
-        <div class="col-md-3">
-          <div class="d-flex">
-            <img src="./assets/design.png" alt="Discover" width="40" height="40" class="icon">
-            <h3 class="ml-4 fs-30 fw-bolder">Design</h3>
+        <div class="hero-panel">
+          <div class="panel-header">
+            <div class="panel-title-row">
+              <div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg></div>
+              <div>
+                <div class="panel-name">HBS Packing Station</div>
+                <div class="panel-sub">WPF · .NET 6 · live</div>
+              </div>
+            </div>
+            <div class="status-dot"></div>
           </div>
-          <p class="ml-5 pl-3 fs-20 fw-semibold">We create a lean go-to-market product strategy that best supports the user's experience.</p>
-        </div>
-        <div class="col-md-3">
-          <div class="d-flex">
-            <img src="./assets/develop.png" alt="Discover" width="40" height="40" class="icon">
-            <h3 class="ml-4 fs-30 fw-bolder">Develop</h3>
+          <div class="panel-rows">
+            <div class="panel-row"><span class="panel-row-label">PostNL carrier API</span><span
+                class="panel-row-val">SYNCED · 200 OK</span></div>
+            <div class="panel-row"><span class="panel-row-label">Zebra ZPL label printer</span><span
+                class="panel-row-val">9600 BAUD · READY</span></div>
+            <div class="panel-row"><span class="panel-row-label">Weight scale (COM port)</span><span
+                class="panel-row-val green">LIVE · 1.34 kg</span></div>
+            <div class="panel-row"><span class="panel-row-label">Android scanner devices</span><span
+                class="panel-row-val green">6 ONLINE</span></div>
+            <div class="panel-row"><span class="panel-row-label">WMS order pipeline</span><span
+                class="panel-row-val green">PROCESSING · 4.2 ms</span></div>
           </div>
-          <p class="ml-5 pl-3 fs-20 fw-semibold">Our in-house, US-based dev team works with our creative team to code with precision.</p>
-        </div>
-        <div class="col-md-3">
-          <div class="d-flex">
-            <img src="./assets/deploy.png" alt="Discover" width="40" height="40" class="icon">
-            <h3 class="ml-4 fs-30 fw-bolder">Deploy</h3>
+          <div class="panel-footer">
+            <div class="carrier-tags"><span class="carrier-tag">PostNL</span><span class="carrier-tag">DHL</span><span
+                class="carrier-tag">FedEx</span></div>
+            <span style="font-size:0.7rem;font-family:monospace;color:#34d399;">EN · NL · PL</span>
           </div>
-          <p class="ml-5 pl-3 fs-20 fw-semibold">Real artists ship. We partner with you to launch and iterate to find true product-market fit.</p>
         </div>
       </div>
     </div>
-  </div>
-  <div class="carousel-container">
-    <div class="background">
-        <h1 class="heading text-white ps-3">Creating value across industries</h1>
-    </div>
-    <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
-        <div class="carousel-inner w-100" role="listbox">
-            <div class="carousel-item active">
-                <div class="col-md-3 mx-0 px-0">
-                    <div class="card card-body" data-bg="url('./assets/ecommerce.jpeg')">
-                      <h3 class="text-white hover-hide">Retail and Ecommerce</h3>
-                      <div class="hovered-div">
-                        <h3 class="text-white text-start">Retail and Ecommerce</h3>
-                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, porro tempora autem architecto in culpa officiis! Omnis aut natus dolores, tempore eum blanditiis. Sit esse tempora sed similique non quod!</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3 mx-0 px-0">
-                    <div class="card card-body" data-bg="url('./assets/healthcare.jpg')">
-                      <h3 class="text-white hover-hide">Healthcare</h3>
-                      <div class="hovered-div">
-                        <h3 class="text-white">Healthcare</h3>
-                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, porro tempora autem architecto in culpa officiis! Omnis aut natus dolores, tempore eum blanditiis. Sit esse tempora sed similique non quod!</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3 mx-0 px-0">
-                    <div class="card card-body" data-bg="url('./assets/high-tech.jpg')">
-                      <h3 class="text-white hover-hide">High Tech & Startups</h3>
-                      <div class="hovered-div">
-                        <h3 class="text-white">High Tech & Startups</h3>
-                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, porro tempora autem architecto in culpa officiis! Omnis aut natus dolores, tempore eum blanditiis. Sit esse tempora sed similique non quod!</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3 mx-0 px-0">
-                    <div class="card card-body" data-bg="url('./assets/learning.jpg')">
-                      <h3 class="text-white hover-hide">Learning and Training</h3>
-                      <div class="hovered-div">
-                        <h3 class="text-white">Learning and Training</h3>
-                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, porro tempora autem architecto in culpa officiis! Omnis aut natus dolores, tempore eum blanditiis. Sit esse tempora sed similique non quod!</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3 mx-0 px-0">
-                    <div class="card card-body" data-bg="url('./assets/logistisc.jpg')">
-                      <h3 class="text-white hover-hide">Logistisc & Transportations</h3>
-                      <div class="hovered-div">
-                        <h3 class="text-white">Logistisc & Transportations</h3>
-                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, porro tempora autem architecto in culpa officiis! Omnis aut natus dolores, tempore eum blanditiis. Sit esse tempora sed similique non quod!</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="col-md-3 mx-0 px-0">
-                    <div class="card card-body" data-bg="url('./assets/sport.jpg')">
-                      <h3 class="text-white">Sports And Entertainment</h3>
-                      <div class="hovered-div">
-                        <h3 class="text-white">Sports And Entertainment</h3>
-                        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, porro tempora autem architecto in culpa officiis! Omnis aut natus dolores, tempore eum blanditiis. Sit esse tempora sed similique non quod!</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next w-auto" href="#recipeCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-        <h1>Custom Software & Mobile App Development Company</h1>
-    </div>
-    <div class="col-md-6">
-      <p>The future is digital, there’s no doubt about it. At TekRevol, we believe that each digital touch-point is an opportunity to create meaningful interactions and build a mutually beneficial connection between a brand and its audience. As a custom mobile app development company, we offer a wide range of <span class="color-ff">software development services </span>that help us attain a strong digital presence in the highly competitive market.</p>
-      <h2>Custom Software Development</h2>
-      <p>Our <span class="color-ff">custom software development</span> team onboards versatile developers and technical personnel capable of acknowledging your project’s custom requirements.</p>
-      <h2>Android Application Development</h2>
-      <p>Craft the ideal product by redirecting your strategy in the right direction. Start ahead with your <span class="color-ff">Android application development</span> journey. With your insights in mind, our collaborative sentiment will continue to grow – building robust and custom applications for you.</p>
-      <h2>Top-Rated iOS App Development Services</h2>
-      <p>Hire iOS app developers from top-tier iOS app development company to kick-start your app <span class="color-ff">entrepreneurial journey</span> like never before!</p>
-      <h2>Game Development</h2>
-      <p>TekRevol a well versed mobile game development company create cross-platform <span class="color-ff">game development solutions</span> that engages, and captivate the audience to the fullest.</p>
-    </div>
-  </div>
-</div>
+  </section>
 
-  <script src="./script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <hr class="divider" />
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <span class="section-eyebrow fade-up">What we build</span>
+      <h2 class="section-title fade-up">Every layer of your logistics operation, covered</h2>
+      <p class="section-desc fade-up">We work exclusively in logistics and supply chain software — from warehouse floors
+        to carrier APIs to AI-assisted back-office tooling.</p>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-num">01 / 05</div>
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg></div>
+          <h3>Warehouse Management Systems</h3>
+          <p>Custom web-based WMS platforms built for your exact picking, packing, and fulfillment workflow — inventory
+            tracking, order management, multi-user roles, and full audit logging.</p>
+          <div class="service-tags"><span class="tag">Order management</span><span class="tag">Inventory</span><span
+              class="tag">Pick &amp; Pack</span><span class="tag">Audit trail</span></div>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-num">02 / 05</div>
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="5" y="2" width="14" height="20" rx="2" />
+              <path stroke-linecap="round" d="M9 7h6M9 12h4" />
+            </svg></div>
+          <h3>Android scanning apps</h3>
+          <p>Native Android apps for warehouse floors — QR and barcode scanning for parcel handling, shipment
+            confirmation, and real-time stock updates. Built for heavy daily use on handheld devices.</p>
+          <div class="service-tags"><span class="tag">QR / barcode</span><span class="tag">Native Android</span><span
+              class="tag">Parcel handling</span><span class="tag">Real-time sync</span></div>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-num">03 / 05</div>
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path stroke-linecap="round" d="M8 21h8M12 17v4" />
+            </svg></div>
+          <h3>Desktop shipping stations</h3>
+          <p>WPF desktop apps for packing stations — label printing via Zebra ZPL, live weight from serial-port scales,
+            carrier API dispatch, invoice verification, and multi-language support. Engineered to eliminate packing
+            errors.</p>
+          <div class="service-tags"><span class="tag">WPF / .NET</span><span class="tag">Zebra ZPL</span><span
+              class="tag">Serial port</span><span class="tag">PostNL</span></div>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-num">04 / 05</div>
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11l4 4-4 4M8 7l-4 4 4 4" />
+              <path d="M14 7l-4 10" />
+            </svg></div>
+          <h3>E-commerce &amp; Magento storefronts</h3>
+          <p>Magento-based brand storefronts integrated directly with your WMS and carrier pipeline from day one — no
+            disconnected systems, no manual bridging between your store and your warehouse.</p>
+          <div class="service-tags"><span class="tag">Magento</span><span class="tag">PHP</span><span
+              class="tag">Elasticsearch</span><span class="tag">WMS integration</span></div>
+        </div>
+        <div class="service-card full fade-up">
+          <div class="service-num">05 / 05</div>
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg></div>
+          <h3>AI-powered back-office tooling</h3>
+          <p>Internal tools that eliminate repetitive admin work. We built an AI chat application that automates product
+            description translation across multiple languages for a multi-country catalog — removing hours of manual
+            data entry every week. If you have a structured, repetitive back-office process, we can automate it.</p>
+          <div class="service-tags"><span class="tag">LLM integration</span><span class="tag">Multi-language</span><span
+              class="tag">Catalog automation</span><span class="tag">Internal tooling</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- WORK -->
+  <section id="work" class="work-section">
+    <div class="container">
+      <div class="work-header fade-up">
+        <div class="work-header-text">
+          <span class="section-eyebrow">Selected work</span>
+          <h2>8 applications. One long-term client. Every layer owned.</h2>
+        </div>
+        <a href="case-studies.html" class="view-all-link">View all case studies <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg></a>
+      </div>
+
+      <div class="projects-bento fade-up">
+
+        <!-- HBS Packing — large -->
+        <a href="case-studies.html" class="proj proj-c7">
+          <div class="proj-index"><span>01 — Desktop App</span>
+            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg></div>
+          </div>
+          <div class="proj-type">Shipping management</div>
+          <h3>HBS Packing Station</h3>
+          <p>A full WPF packing station desktop app — order retrieval, product scanning, live scale weight capture,
+            Zebra ZPL label printing, PostNL dispatch, and forced invoice verification. Used daily by warehouse
+            employees across three languages.</p>
+          <div class="proj-tags"><span class="tag">WPF / .NET 6</span><span class="tag">PostNL API</span><span
+              class="tag">Zebra ZPL</span><span class="tag">Serial port</span><span class="tag">SQL logging</span></div>
+          <div class="proj-outcome">Zero wrong-item dispatches after deployment</div>
+        </a>
+
+        <!-- WMS -->
+        <a href="case-studies.html" class="proj proj-c5">
+          <div class="proj-index"><span>02 — Web platform</span>
+            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg></div>
+          </div>
+          <div class="proj-type">Warehouse Management</div>
+          <h3>Custom WMS Platform</h3>
+          <p>A purpose-built web WMS replacing a patchwork of spreadsheets and disconnected tools — full order
+            lifecycle, inventory tracking, user roles, and audit logging.</p>
+          <div class="proj-tags"><span class="tag">Web WMS</span><span class="tag">Order lifecycle</span><span
+              class="tag">Inventory</span></div>
+          <div class="proj-outcome">Single source of truth for all warehouse operations</div>
+        </a>
+
+        <!-- Android -->
+        <a href="case-studies.html" class="proj proj-c4">
+          <div class="proj-index"><span>03 — Android App</span>
+            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg></div>
+          </div>
+          <div class="proj-type">Floor scanning</div>
+          <h3>Parcel Scanning App</h3>
+          <p>Native Android app for scanning and processing parcels on the warehouse floor — QR/barcode driven,
+            real-time sync, built for reliability under heavy daily use.</p>
+          <div class="proj-tags"><span class="tag">Android native</span><span class="tag">QR / barcode</span><span
+              class="tag">Real-time</span></div>
+          <div class="proj-outcome">Sub-second parcel updates across all devices</div>
+        </a>
+
+        <!-- Magento -->
+        <a href="case-studies.html" class="proj proj-c4">
+          <div class="proj-index"><span>04 — E-commerce</span>
+            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg></div>
+          </div>
+          <div class="proj-type">Storefront</div>
+          <h3>Magento Brand Store</h3>
+          <p>New brand storefront on Magento, integrated directly with the WMS and carrier pipeline — orders flow from
+            checkout to dispatch without manual steps.</p>
+          <div class="proj-tags"><span class="tag">Magento</span><span class="tag">PHP</span><span
+              class="tag">WMS-connected</span></div>
+          <div class="proj-outcome">End-to-end automated order-to-ship flow</div>
+        </a>
+
+        <!-- AI Translation -->
+        <a href="case-studies.html" class="proj proj-c4">
+          <div class="proj-index"><span>05 — AI Tooling</span>
+            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg></div>
+          </div>
+          <div class="proj-type">Back-office automation</div>
+          <h3>AI Translation App</h3>
+          <p>An LLM-powered chat tool that automates product description translation across multiple languages for a
+            multi-country catalog — eliminating hours of weekly admin work.</p>
+          <div class="proj-tags"><span class="tag">LLM / AI API</span><span class="tag">Multi-language</span><span
+              class="tag">Catalog</span></div>
+          <div class="proj-outcome">Hours of weekly catalog admin eliminated</div>
+        </a>
+
+        <!-- Elasticsearch -->
+        <a href="case-studies.html" class="proj proj-c4">
+          <div class="proj-index"><span>06 — Performance</span>
+            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg></div>
+          </div>
+          <div class="proj-type">Search infrastructure</div>
+          <h3>Elasticsearch Implementation</h3>
+          <p>Implemented and tuned Elasticsearch inside the PHP platform — eliminating catalog indexing lag during peak
+            seasonal traffic.</p>
+          <div class="proj-tags"><span class="tag">Elasticsearch</span><span class="tag">PHP</span></div>
+          <div class="proj-outcome">Lag-free search under peak load</div>
+        </a>
+
+        <!-- Platform improvements -->
+        <a href="case-studies.html" class="proj proj-c4">
+          <div class="proj-index"><span>07 — Platform</span>
+            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg></div>
+          </div>
+          <div class="proj-type">Web application</div>
+          <h3>Platform Improvements</h3>
+          <p>Ongoing PHP platform hardening — checkout logic, database query optimisation, and feature extensions as the
+            business scaled.</p>
+          <div class="proj-tags"><span class="tag">PHP</span><span class="tag">Performance</span><span
+              class="tag">Refactoring</span></div>
+          <div class="proj-outcome">Stable platform under growing order volume</div>
+        </a>
+
+        <!-- Internal tool -->
+        <a href="case-studies.html" class="proj proj-c4">
+          <div class="proj-index"><span>08 — Internal tool</span>
+            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
+              </svg></div>
+          </div>
+          <div class="proj-type">Operations tooling</div>
+          <h3>Internal Operations Tool</h3>
+          <p>Custom internal tool for the operations team — structured data flows, permissioned access, and process
+            automation tailored to their exact business requirements.</p>
+          <div class="proj-tags"><span class="tag">Internal</span><span class="tag">Permissions</span><span
+              class="tag">Automation</span></div>
+          <div class="proj-outcome">Reduced manual coordination overhead</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container">
+      <span class="section-eyebrow fade-up">How it works</span>
+      <h2 class="section-title fade-up">From your first call to a running system</h2>
+      <p class="section-desc fade-up">A simple, low-overhead engagement for European businesses who need a reliable
+        long-term remote team — not a one-off contractor.</p>
+      <div class="process-grid">
+        <div class="process-step fade-up">
+          <div class="step-count">01</div>
+          <h3>Discovery call</h3>
+          <p>30 minutes. We understand your operation, your current tools, and where things break. No pitch — just
+            listening.</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-count">02</div>
+          <h3>Scope &amp; proposal</h3>
+          <p>We map your software needs, define what to build first, and give you a clear timeline with a fixed-scope
+            estimate.</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-count">03</div>
+          <h3>Build &amp; iterate</h3>
+          <p>Bi-weekly demos, fast feedback loops, real delivery. We don't disappear for months between updates.</p>
+        </div>
+        <div class="process-step fade-up">
+          <div class="step-count">04</div>
+          <h3>Ongoing partnership</h3>
+          <p>We stay on as your dedicated team — maintaining, improving, and scaling every system as your business
+            grows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- WHY -->
+  <section>
+    <div class="container">
+      <span class="section-eyebrow fade-up">Why Duoxsoft</span>
+      <h2 class="section-title fade-up">Not a generalist agency</h2>
+      <p class="section-desc fade-up">We work exclusively in logistics and supply chain software. That depth means
+        faster delivery, fewer questions, and a team that understands your problems before you explain them.</p>
+      <div class="why-grid">
+        <div class="why-card fade-up">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <circle cx="12" cy="12" r="3" />
+              <path stroke-linecap="round" d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+            </svg></div>
+          <h3>Deep domain focus</h3>
+          <p>Every project we take is in warehousing, fulfillment, or shipping. We've already built WMS platforms,
+            packing stations, scanner apps, Magento storefronts, and AI back-office tools — we speak your language from
+            day one.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M16 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg></div>
+          <h3>Dedicated team model</h3>
+          <p>You get a consistent team — not a different contractor each sprint. We own your product like insiders,
+            carry full context, and stay through the entire lifecycle. Our current client has worked with the same team
+            for over two years.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <circle cx="12" cy="12" r="10" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
+            </svg></div>
+          <h3>European morning overlap</h3>
+          <p>Our team overlaps with CET/CEST mornings — live standups, fast responses, real collaboration. No async
+            delays that slow your sprints or force you to wait until the next day for answers.</p>
+        </div>
+        <div class="why-card fade-up">
+          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h10M4 18h6" />
+            </svg></div>
+          <h3>Full-stack, hardware to cloud</h3>
+          <p>Web apps, Android, WPF desktop, serial port hardware, carrier APIs, Elasticsearch, Magento, AI pipelines —
+            one team, one relationship, zero coordination overhead between vendors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CTA -->
+  <section id="contact" class="cta-section">
+    <div class="cta-glow"></div>
+    <div class="container">
+      <span class="section-eyebrow fade-up">Get in touch</span>
+      <h2 class="fade-up">Is your operation outgrowing its current software?</h2>
+      <p class="fade-up">Tell us what you're working with. We'll tell you honestly whether we can help — no pitch, no
+        pressure.</p>
+      <div class="contact-form fade-up">
+        <div class="form-row"><label for="cf-name">Your name</label><input type="text" id="cf-name"
+            placeholder="Jan de Vries" /></div>
+        <div class="form-row"><label for="cf-company">Company &amp; country</label><input type="text" id="cf-company"
+            placeholder="Acme Fulfillment — Netherlands" /></div>
+        <div class="form-row"><label for="cf-email">Work email</label><input type="email" id="cf-email"
+            placeholder="jan@acmefulfillment.nl" /></div>
+        <div class="form-row"><label for="cf-msg">Describe your current setup</label><textarea id="cf-msg"
+            placeholder="What tools are you using today? What's not working? What do you need built?"></textarea></div>
+        <button class="btn-primary btn-full" type="button">Send message <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg></button>
+        <p class="form-note">We respond within 1 business day.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <p style="color:var(--muted);">&copy; 2026 Duoxsoft. Logistics software specialists.</p>
+      <div class="footer-links"><a href="https://www.linkedin.com/company/duoxsoft/">LinkedIn</a><a
+          href="mailto:hello@duoxsoft.com">hello@duoxsoft.com</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
 </body>
+
 </html>
