@@ -943,6 +943,24 @@
       resize: vertical;
     }
 
+
+    .form-row input.error,
+    .form-row textarea.error {
+      border-color: #f87171;
+    }
+
+    .form-error {
+      display: none;
+      font-size: 0.72rem;
+      color: #f87171;
+      margin-top: 0.4rem;
+      line-height: 1.4;
+    }
+
+    .form-error.visible {
+      display: block;
+    }
+
     .form-note {
       font-size: 0.72rem;
       color: var(--muted-2);
@@ -1487,16 +1505,29 @@
       <p class="fade-up">Tell us what you're working with. We'll tell you honestly whether we can help — no pitch, no
         pressure.</p>
       <div class="contact-form fade-up">
-        <div class="form-row"><label for="cf-name">Your name</label><input type="text" id="cf-name"
-            placeholder="Jan de Vries" /></div>
-        <div class="form-row"><label for="cf-company">Company &amp; country</label><input type="text" id="cf-company"
-            placeholder="Acme Fulfillment — Netherlands" /></div>
-        <div class="form-row"><label for="cf-email">Work email</label><input type="email" id="cf-email"
-            placeholder="jan@acmefulfillment.nl" /></div>
-        <div class="form-row"><label for="cf-msg">Describe your current setup</label><textarea id="cf-msg"
-            placeholder="What tools are you using today? What's not working? What do you need built?"></textarea></div>
-        <button class="btn-primary btn-full" type="button">Send message <svg viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2.5">
+        <div class="form-row">
+          <label for="cf-name">Your name</label>
+          <input type="text" id="cf-name" placeholder="Jan de Vries" />
+          <span class="form-error" id="cf-name-error">Please enter your name.</span>
+        </div>
+        <div class="form-row">
+          <label for="cf-company">Company &amp; country</label>
+          <input type="text" id="cf-company" placeholder="Acme Fulfillment — Netherlands" />
+          <span class="form-error" id="cf-company-error">Please enter your company and country.</span>
+        </div>
+        <div class="form-row">
+          <label for="cf-email">Work email</label>
+          <input type="email" id="cf-email" placeholder="jan@acmefulfillment.nl" />
+          <span class="form-error" id="cf-email-error">Please enter a valid email address.</span>
+        </div>
+        <div class="form-row">
+          <label for="cf-msg">Describe your current setup</label>
+          <textarea id="cf-msg"
+            placeholder="What tools are you using today? What's not working? What do you need built?"></textarea>
+          <span class="form-error" id="cf-msg-error">Please tell us a bit about your setup.</span>
+        </div>
+        <button class="btn-primary btn-full" type="button" id="cf-submit">Send message <svg viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg></button>
         <p class="form-note">We respond within 1 business day.</p>
@@ -1515,6 +1546,52 @@
   <script>
     const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+
+    const cfFields = ['cf-name', 'cf-company', 'cf-email', 'cf-msg'];
+
+    function validateField(id) {
+      const el = document.getElementById(id);
+      const errorEl = document.getElementById(id + '-error');
+      const value = el.value.trim();
+      let valid = true;
+
+      if (!value) {
+        valid = false;
+      } else if (id === 'cf-email') {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        valid = emailPattern.test(value);
+      }
+
+      el.classList.toggle('error', !valid);
+      errorEl.classList.toggle('visible', !valid);
+      return valid;
+    }
+
+    // Clear error as soon as the visitor starts fixing the field
+    cfFields.forEach(id => {
+      document.getElementById(id).addEventListener('input', () => validateField(id));
+    });
+
+    document.getElementById('cf-submit').addEventListener('click', function () {
+      const results = cfFields.map(validateField);
+      if (results.includes(false)) return;
+
+      const name = document.getElementById('cf-name').value.trim();
+      const company = document.getElementById('cf-company').value.trim();
+      const email = document.getElementById('cf-email').value.trim();
+      const msg = document.getElementById('cf-msg').value.trim();
+
+      const subject = `New inquiry from ${name} — ${company}`;
+      const body =
+        `Name: ${name}\n` +
+        `Company & Country: ${company}\n` +
+        `Email: ${email}\n\n` +
+        `Message:\n${msg}`;
+
+      const mailtoLink = `mailto:info@duoxsoft.pk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+    });
   </script>
 </body>
 
