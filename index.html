@@ -4,1089 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Duoxsoft — Logistics & Supply Chain Software</title>
+  <title>TEST — Logistics &amp; Supply Chain Software</title>
+  <link rel="icon" type="image/png" href="assets/DuoxsoftLogo.png" />
+  <link rel="apple-touch-icon" href="assets/DuoxsoftLogo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --bg: #0b0c10;
-      --bg-2: #0f1117;
-      --bg-3: #141720;
-      --border: rgba(255, 255, 255, 0.07);
-      --border-md: rgba(255, 255, 255, 0.11);
-      --text: #ffffff;
-      --muted: #f0f0f4;
-      --muted-2: #c0c0c0;
-      --purple: #7d43ce;
-      --purple-lt: #9d68e0;
-      --purple-bg: rgba(125, 67, 206, 0.08);
-      --purple-bg2: rgba(125, 67, 206, 0.14);
-      --grid-line: rgba(255, 255, 255, 0.03);
-      --radius: 12px;
-      --radius-lg: 18px;
-    }
-
-    html {
-      font-size: 16px;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      line-height: 1.7;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    * {
-      position: relative;
-      z-index: 1;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-
-    h1 {
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      font-weight: 800;
-    }
-
-    h2 {
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
-    }
-
-    h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    p {
-      color: var(--muted);
-      font-size: 0.975rem;
-      line-height: 1.8;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .container {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    section {
-      padding: 6rem 0;
-    }
-
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--border);
-      background: rgba(11, 12, 16, 0.88);
-      backdrop-filter: blur(20px);
-    }
-
-    .nav-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: flex-start;
-    }
-
-    .nav-logo img {
-      height: 60px;
-      width: auto;
-      display: block;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 10px 22px;
-      background: var(--purple);
-      color: #fff !important;
-      border-radius: var(--radius);
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .nav-cta:hover {
-      background: var(--purple-lt);
-      transform: translateY(-1px);
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--muted);
-      border-radius: 2px;
-    }
-
-    /* HERO */
-    .hero {
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      top: -120px;
-      left: 50%;
-      transform: translateX(-30%);
-      width: 800px;
-      height: 600px;
-      background: radial-gradient(ellipse at center, rgba(125, 67, 206, 0.18) 0%, transparent 65%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--purple-lt);
-      border: 1px solid rgba(125, 67, 206, 0.3);
-      background: var(--purple-bg);
-      padding: 6px 14px;
-      border-radius: 40px;
-      margin-bottom: 1.75rem;
-    }
-
-    .hero-eyebrow .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--purple-lt);
-      animation: blink 2s infinite;
-    }
-
-    @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 1;
-        transform: scale(1)
-      }
-
-      50% {
-        opacity: 0.4;
-        transform: scale(0.7)
-      }
-    }
-
-    .hero h1 {
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: transparent;
-      -webkit-text-stroke: 1.5px var(--purple-lt);
-    }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 13px 28px;
-      background: var(--purple);
-      color: #fff;
-      border-radius: var(--radius);
-      transition: background 0.2s, transform 0.15s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary:hover {
-      background: var(--purple-lt);
-      transform: translateY(-2px);
-    }
-
-    .btn-primary svg {
-      width: 15px;
-      height: 15px;
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 12px 28px;
-      background: transparent;
-      color: var(--muted);
-      border-radius: var(--radius);
-      border: 1px solid var(--border-md);
-      transition: color 0.2s, border-color 0.2s, transform 0.15s;
-      cursor: pointer;
-    }
-
-    .btn-ghost:hover {
-      color: var(--text);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-top: 3.5rem;
-    }
-
-    .stat {
-      background: var(--bg-2);
-      padding: 1.25rem 1rem;
-    }
-
-    .stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.03em;
-      margin-bottom: 0.2rem;
-    }
-
-    .stat-num span {
-      color: var(--purple-lt);
-    }
-
-    .stat-label {
-      font-size: 0.67rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted-2);
-      font-weight: 500;
-    }
-
-    .hero-panel {
-      background: var(--bg-2);
-      border: 1px solid var(--border-md);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .panel-header {
-      padding: 1rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .panel-title-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .panel-icon {
-      width: 32px;
-      height: 32px;
-      background: var(--purple-bg2);
-      border: 1px solid rgba(125, 67, 206, 0.25);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .panel-icon svg {
-      width: 15px;
-      height: 15px;
-      color: var(--purple-lt);
-    }
-
-    .panel-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .panel-sub {
-      font-size: 0.65rem;
-      color: var(--muted-2);
-      font-family: monospace;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #34d399;
-      box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
-      animation: blink 2.5s infinite;
-    }
-
-    .panel-rows {
-      padding: 0.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .panel-row {
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .panel-row-label {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .panel-row-val {
-      font-size: 0.72rem;
-      font-family: monospace;
-      font-weight: 600;
-      color: var(--purple-lt);
-    }
-
-    .panel-row-val.green {
-      color: #34d399;
-    }
-
-    .panel-footer {
-      padding: 1rem 1.25rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .carrier-tags {
-      display: flex;
-      gap: 6px;
-    }
-
-    .carrier-tag {
-      font-size: 0.65rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 4px;
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-eyebrow {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--purple-lt);
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      margin-bottom: 1rem;
-    }
-
-    .section-desc {
-      max-width: 560px;
-      font-size: 1rem;
-    }
-
-    .tag {
-      font-size: 0.65rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 3px 9px;
-      border-radius: 4px;
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      color: var(--muted-2);
-    }
-
-    /* SERVICES */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      margin-top: 4rem;
-    }
-
-    .service-card {
-      background: var(--bg-2);
-      padding: 2.5rem 2rem;
-      transition: background 0.2s;
-    }
-
-    .service-card:hover {
-      background: var(--bg-3);
-    }
-
-    .service-card.full {
-      grid-column: span 2;
-    }
-
-    .service-num {
-      font-family: monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted-2);
-      margin-bottom: 1.5rem;
-    }
-
-    .service-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--purple-bg);
-      border: 1px solid rgba(125, 67, 206, 0.2);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-    }
-
-    .service-icon svg {
-      width: 20px;
-      height: 20px;
-      color: var(--purple-lt);
-    }
-
-    .service-card h3 {
-      margin-bottom: 0.65rem;
-    }
-
-    .service-card p {
-      font-size: 0.88rem;
-    }
-
-    .service-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 1.25rem;
-    }
-
-    /* ── WORK GRID ── */
-    .work-section {
-      padding: 7rem 0;
-    }
-
-    .work-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 4rem;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .work-header-text .section-eyebrow {
-      margin-bottom: 0.75rem;
-    }
-
-    .work-header-text h2 {
-      margin-bottom: 0;
-    }
-
-    .view-all-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      border: 1px solid var(--border-md);
-      padding: 10px 20px;
-      border-radius: var(--radius);
-      transition: color 0.2s, border-color 0.2s;
-      white-space: nowrap;
-    }
-
-    .view-all-link:hover {
-      color: var(--text);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .view-all-link svg {
-      width: 13px;
-      height: 13px;
-    }
-
-    /* Bento-style project grid */
-    .projects-bento {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: auto;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .proj {
-      background: var(--bg-2);
-      padding: 2.25rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: background 0.25s;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .proj:hover {
-      background: var(--bg-3);
-    }
-
-    .proj:hover .proj-arrow {
-      opacity: 1;
-      transform: translate(2px, -2px);
-    }
-
-    /* column spans */
-    .proj-c7 {
-      grid-column: span 7;
-    }
-
-    .proj-c5 {
-      grid-column: span 5;
-    }
-
-    .proj-c4 {
-      grid-column: span 4;
-    }
-
-    .proj-c6 {
-      grid-column: span 6;
-    }
-
-    .proj-c3 {
-      grid-column: span 3;
-    }
-
-    .proj-index {
-      font-family: monospace;
-      font-size: 0.63rem;
-      letter-spacing: 0.12em;
-      color: var(--muted-2);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .proj-arrow {
-      width: 28px;
-      height: 28px;
-      border: 1px solid var(--border-md);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .proj-arrow svg {
-      width: 12px;
-      height: 12px;
-      color: var(--purple-lt);
-    }
-
-    .proj-type {
-      font-size: 0.68rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--purple-lt);
-      margin-bottom: 0.6rem;
-    }
-
-    .proj h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-      line-height: 1.3;
-    }
-
-    .proj p {
-      font-size: 0.83rem;
-      flex: 1;
-    }
-
-    .proj-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: auto;
-      padding-top: 1.25rem;
-    }
-
-    .proj-outcome {
-      margin-top: 1rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .proj-outcome::before {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--purple-lt);
-      flex-shrink: 0;
-    }
-
-    /* PROCESS */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      margin-top: 4rem;
-    }
-
-    .process-step {
-      background: var(--bg-2);
-      padding: 2rem 1.5rem;
-      transition: background 0.2s;
-    }
-
-    .process-step:hover {
-      background: var(--bg-3);
-    }
-
-    .step-count {
-      font-family: 'Syne', sans-serif;
-      font-size: 3rem;
-      font-weight: 800;
-      line-height: 1;
-      margin-bottom: 1.25rem;
-      -webkit-text-stroke: 1px var(--muted-2);
-      color: transparent;
-    }
-
-    .process-step h3 {
-      font-size: 1rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .process-step p {
-      font-size: 0.82rem;
-    }
-
-    /* WHY */
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-      margin-top: 4rem;
-    }
-
-    .why-card {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      transition: border-color 0.2s;
-    }
-
-    .why-card:hover {
-      border-color: rgba(125, 67, 206, 0.3);
-    }
-
-    .why-icon {
-      width: 38px;
-      height: 38px;
-      background: var(--purple-bg);
-      border: 1px solid rgba(125, 67, 206, 0.2);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-    }
-
-    .why-icon svg {
-      width: 17px;
-      height: 17px;
-      color: var(--purple-lt);
-    }
-
-    .why-card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .why-card p {
-      font-size: 0.85rem;
-    }
-
-    /* CTA */
-    .cta-section {
-      padding: 7rem 0;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .cta-glow {
-      position: absolute;
-      bottom: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 700px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(125, 67, 206, 0.15) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .cta-section h2 {
-      max-width: 680px;
-      margin: 0 auto 1.25rem;
-    }
-
-    .cta-section>.container>p {
-      max-width: 520px;
-      margin: 0 auto 3rem;
-      font-size: 1rem;
-    }
-
-    .contact-form {
-      max-width: 480px;
-      margin: 0 auto;
-      background: var(--bg-2);
-      border: 1px solid var(--border-md);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      text-align: left;
-    }
-
-    .form-row {
-      margin-bottom: 1rem;
-    }
-
-    .form-row label {
-      display: block;
-      font-size: 0.68rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted-2);
-      margin-bottom: 0.5rem;
-    }
-
-    .form-row input,
-    .form-row textarea {
-      width: 100%;
-      background: var(--bg-3);
-      border: 1px solid var(--border-md);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-row input:focus,
-    .form-row textarea:focus {
-      border-color: rgba(125, 67, 206, 0.5);
-    }
-
-    .form-row textarea {
-      height: 110px;
-      resize: vertical;
-    }
-
-
-    .form-row input.error,
-    .form-row textarea.error {
-      border-color: #f87171;
-    }
-
-    .form-error {
-      display: none;
-      font-size: 0.72rem;
-      color: #f87171;
-      margin-top: 0.4rem;
-      line-height: 1.4;
-    }
-
-    .form-error.visible {
-      display: block;
-    }
-
-    .form-note {
-      font-size: 0.72rem;
-      color: var(--muted-2);
-      text-align: center;
-      margin-top: 0.75rem;
-    }
-
-    .btn-full {
-      width: 100%;
-      justify-content: center;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 0;
-    }
-
-    .footer-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-inner p {
-      font-size: 0.78rem;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      font-size: 0.78rem;
-      color: var(--muted);
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: var(--text);
-    }
-
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    @media(max-width:960px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service-card.full {
-        grid-column: span 1;
-      }
-
-      .projects-bento {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .proj-c7,
-      .proj-c5,
-      .proj-c4,
-      .proj-c6,
-      .proj-c3 {
-        grid-column: span 1;
-      }
-
-      .process-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media(max-width:640px) {
-      section {
-        padding: 5rem 0;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .hero {
-        padding: 5rem 0 4rem;
-      }
-
-      .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .projects-bento {
-        grid-template-columns: 1fr;
-      }
-
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
+
+  <div class="scroll-progress"><span id="scrollBar"></span></div>
 
   <nav>
     <div class="nav-inner">
@@ -1095,313 +27,259 @@
           onerror="this.outerHTML='<span style=\'font-family:Syne,sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:0.05em;color:#f0f0f4\'>DUOXSOFT</span>'" />
         <h3>Duoxsoft</h3>
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="#services">Services</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="case-studies.html">Case Studies</a></li>
         <li><a href="#process">Process</a></li>
-        <li><a href="#contact" class="nav-cta">Book a call
-          </a></li>
+        <li><a href="#contact" class="nav-cta">Book a call</a></li>
       </ul>
-      <div class="hamburger"><span></span><span></span><span></span></div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false"
+        aria-controls="navLinks"><span></span><span></span><span></span></button>
     </div>
+    <div class="nav-scrim" id="navScrim"></div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-video" autoplay muted loop playsinline
+        poster="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=2000&auto=format&fit=crop">
+        <source src="assets/hero-loop.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-media-overlay"></div>
+      <div class="hero-media-grid"></div>
+    </div>
     <div class="hero-glow"></div>
+
     <div class="container">
       <div class="hero-inner">
-        <div>
+        <div class="hero-copy">
           <div class="hero-eyebrow"><span class="dot"></span>Logistics &amp; Supply Chain Software</div>
           <h1>We build the software that keeps your <em>warehouse moving</em></h1>
-          <p class="hero-desc">Custom WMS platforms, Android scanning apps, desktop shipping stations, Magento
-            storefronts, and AI back-office tooling — built and owned by a dedicated team that works exclusively in
-            logistics.</p>
           <div class="hero-actions">
-            <a href="#contact" class="btn-primary">Book a discovery call <svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5">
+            <a href="#contact" class="btn-primary">Book a discovery call
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg></a>
+              </svg>
+            </a>
             <a href="#work" class="btn-ghost">See our work</a>
           </div>
-          <div class="hero-stats">
-            <div class="stat">
-              <div class="stat-num">2<span>+</span></div>
-              <div class="stat-label">Years active</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">8<span>+</span></div>
-              <div class="stat-label">Apps delivered</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">3</div>
-              <div class="stat-label">Carrier APIs</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">3</div>
-              <div class="stat-label">Languages</div>
-            </div>
-          </div>
         </div>
-        <div class="hero-panel">
-          <div class="panel-header">
-            <div class="panel-title-row">
-              <div class="panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg></div>
-              <div>
-                <div class="panel-name">HBS Packing Station</div>
-                <div class="panel-sub">WPF · .NET 6 · live</div>
+
+        <div class="hero-visual">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="status-dot"></span>
+              <span>Live system status</span>
+            </div>
+            <div class="stat-card-grid">
+              <div class="stat-block">
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                    <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                  </svg></div>
+                <strong><span class="count-up" data-target="8">0</span><em>+</em></strong>
+                <span>Apps delivered</span>
+              </div>
+              <div class="stat-block">
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
+                  </svg></div>
+                <strong>4.2<em>ms</em></strong>
+                <span>WMS pipeline</span>
+              </div>
+              <div class="stat-block">
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07L11 5M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07L13 19" />
+                  </svg></div>
+                <strong><span class="count-up" data-target="3">0</span></strong>
+                <span>Carrier APIs</span>
+              </div>
+              <div class="stat-block">
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <circle cx="12" cy="12" r="10" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
+                  </svg></div>
+                <strong><span class="count-up" data-target="2">0</span><em>+</em></strong>
+                <span>Years active</span>
               </div>
             </div>
-            <div class="status-dot"></div>
-          </div>
-          <div class="panel-rows">
-            <div class="panel-row"><span class="panel-row-label">PostNL carrier API</span><span
-                class="panel-row-val">SYNCED · 200 OK</span></div>
-            <div class="panel-row"><span class="panel-row-label">Zebra ZPL label printer</span><span
-                class="panel-row-val">9600 BAUD · READY</span></div>
-            <div class="panel-row"><span class="panel-row-label">Weight scale (COM port)</span><span
-                class="panel-row-val green">LIVE · 1.34 kg</span></div>
-            <div class="panel-row"><span class="panel-row-label">Android scanner devices</span><span
-                class="panel-row-val green">6 ONLINE</span></div>
-            <div class="panel-row"><span class="panel-row-label">WMS order pipeline</span><span
-                class="panel-row-val green">PROCESSING · 4.2 ms</span></div>
-          </div>
-          <div class="panel-footer">
-            <div class="carrier-tags"><span class="carrier-tag">PostNL</span><span class="carrier-tag">DHL</span><span
-                class="carrier-tag">FedEx</span></div>
-            <span style="font-size:0.7rem;font-family:monospace;color:#34d399;">EN · NL · PL</span>
+            <div class="stat-card-footer">
+              <span class="carrier-tag">PostNL</span>
+              <span class="carrier-tag">DHL</span>
+              <span class="carrier-tag">FedEx</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- LIVE TICKER / SIGNATURE ELEMENT -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item"><i class="tk-dot"></i>POSTNL API · SYNCED</span>
+      <span class="ticker-item"><i class="tk-dot"></i>DHL API · CONNECTED</span>
+      <span class="ticker-item"><i class="tk-dot"></i>FEDEX API · CONNECTED</span>
+      <span class="ticker-item"><i class="tk-dot"></i>ZEBRA ZPL · 9600 BAUD</span>
+      <span class="ticker-item"><i class="tk-dot"></i>ANDROID FLEET · 6 ONLINE</span>
+      <span class="ticker-item"><i class="tk-dot"></i>WMS PIPELINE · 4.2MS</span>
+      <span class="ticker-item"><i class="tk-dot"></i>MAGENTO STOREFRONT · LIVE</span>
+      <span class="ticker-item"><i class="tk-dot"></i>ELASTICSEARCH · INDEXED</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item"><i class="tk-dot"></i>POSTNL API · SYNCED</span>
+      <span class="ticker-item"><i class="tk-dot"></i>DHL API · CONNECTED</span>
+      <span class="ticker-item"><i class="tk-dot"></i>FEDEX API · CONNECTED</span>
+      <span class="ticker-item"><i class="tk-dot"></i>ZEBRA ZPL · 9600 BAUD</span>
+      <span class="ticker-item"><i class="tk-dot"></i>ANDROID FLEET · 6 ONLINE</span>
+      <span class="ticker-item"><i class="tk-dot"></i>WMS PIPELINE · 4.2MS</span>
+      <span class="ticker-item"><i class="tk-dot"></i>MAGENTO STOREFRONT · LIVE</span>
+      <span class="ticker-item"><i class="tk-dot"></i>ELASTICSEARCH · INDEXED</span>
+    </div>
+  </div>
 
   <hr class="divider" />
 
   <!-- SERVICES -->
   <section id="services">
     <div class="container">
-      <span class="section-eyebrow fade-up">What we build</span>
-      <h2 class="section-title fade-up">Every layer of your logistics operation, covered</h2>
-      <p class="section-desc fade-up">We work exclusively in logistics and supply chain software — from warehouse floors
-        to carrier APIs to AI-assisted back-office tooling.</p>
-      <div class="services-grid">
-        <div class="service-card fade-up">
-          <div class="service-num">01 / 05</div>
-          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+      <span class="section-eyebrow reveal-section">What we build</span>
+      <h2 class="section-title reveal-section">Five systems. One connected operation.</h2>
+      <p class="section-desc reveal-section">Hover to explore each one.</p>
+
+      <div class="svc-panels" id="servicesGrid">
+
+        <div class="svc-panel is-active" data-index="0">
+          <div class="svc-panel-bg"><img
+              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop" alt=""
+              loading="lazy" /></div>
+          <div class="svc-panel-scrim"></div>
+          <div class="svc-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg></div>
-          <h3>Warehouse Management Systems</h3>
-          <p>Custom web-based WMS platforms built for your exact picking, packing, and fulfillment workflow — inventory
-            tracking, order management, multi-user roles, and full audit logging.</p>
-          <div class="service-tags"><span class="tag">Order management</span><span class="tag">Inventory</span><span
-              class="tag">Pick &amp; Pack</span><span class="tag">Audit trail</span></div>
+          <div class="svc-panel-label">
+            <span class="svc-panel-num">01</span>
+            <span class="svc-panel-title-v">Warehouse Management</span>
+          </div>
+          <div class="svc-panel-content">
+            <span class="svc-panel-num-h">01</span>
+            <h3>Warehouse Management</h3>
+            <p>Built around your floor, not a template — order lifecycle, inventory, and full audit logging in one
+              system.</p>
+            <a href="#contact" class="svc-panel-cta">Talk to us<svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+          </div>
         </div>
-        <div class="service-card fade-up">
-          <div class="service-num">02 / 05</div>
-          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+
+        <div class="svc-panel" data-index="1">
+          <div class="svc-panel-bg"><img
+              src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?q=80&w=1200&auto=format&fit=crop" alt=""
+              loading="lazy" /></div>
+          <div class="svc-panel-scrim"></div>
+          <div class="svc-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
               <rect x="5" y="2" width="14" height="20" rx="2" />
               <path stroke-linecap="round" d="M9 7h6M9 12h4" />
             </svg></div>
-          <h3>Android scanning apps</h3>
-          <p>Native Android apps for warehouse floors — QR and barcode scanning for parcel handling, shipment
-            confirmation, and real-time stock updates. Built for heavy daily use on handheld devices.</p>
-          <div class="service-tags"><span class="tag">QR / barcode</span><span class="tag">Native Android</span><span
-              class="tag">Parcel handling</span><span class="tag">Real-time sync</span></div>
+          <div class="svc-panel-label">
+            <span class="svc-panel-num">02</span>
+            <span class="svc-panel-title-v">Android Scanning</span>
+          </div>
+          <div class="svc-panel-content">
+            <span class="svc-panel-num-h">02</span>
+            <h3>Android Scanning</h3>
+            <p>QR &amp; barcode apps for parcel handling and real-time stock sync — built for heavy daily use.</p>
+            <a href="#contact" class="svc-panel-cta">Talk to us<svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+          </div>
         </div>
-        <div class="service-card fade-up">
-          <div class="service-num">03 / 05</div>
-          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+
+        <div class="svc-panel" data-index="2">
+          <div class="svc-panel-bg"><img src="./assets/services-3.png" alt="" loading="lazy" /></div>
+          <div class="svc-panel-scrim"></div>
+          <div class="svc-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
               <rect x="2" y="3" width="20" height="14" rx="2" />
               <path stroke-linecap="round" d="M8 21h8M12 17v4" />
             </svg></div>
-          <h3>Desktop shipping stations</h3>
-          <p>WPF desktop apps for packing stations — label printing via Zebra ZPL, live weight from serial-port scales,
-            carrier API dispatch, invoice verification, and multi-language support. Engineered to eliminate packing
-            errors.</p>
-          <div class="service-tags"><span class="tag">WPF / .NET</span><span class="tag">Zebra ZPL</span><span
-              class="tag">Serial port</span><span class="tag">PostNL</span></div>
+          <div class="svc-panel-label">
+            <span class="svc-panel-num">03</span>
+            <span class="svc-panel-title-v">Shipping Stations</span>
+          </div>
+          <div class="svc-panel-content">
+            <span class="svc-panel-num-h">03</span>
+            <h3>Shipping Stations</h3>
+            <p>Zebra ZPL printing, live scale weight, and forced invoice checks that end wrong-item dispatches.</p>
+            <a href="#contact" class="svc-panel-cta">Talk to us<svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+          </div>
         </div>
-        <div class="service-card fade-up">
-          <div class="service-num">04 / 05</div>
-          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+
+        <div class="svc-panel" data-index="3">
+          <div class="svc-panel-bg"><img
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop" alt=""
+              loading="lazy" /></div>
+          <div class="svc-panel-scrim"></div>
+          <div class="svc-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
               <path stroke-linecap="round" stroke-linejoin="round" d="M16 11l4 4-4 4M8 7l-4 4 4 4" />
               <path d="M14 7l-4 10" />
             </svg></div>
-          <h3>E-commerce &amp; Magento storefronts</h3>
-          <p>Magento-based brand storefronts integrated directly with your WMS and carrier pipeline from day one — no
-            disconnected systems, no manual bridging between your store and your warehouse.</p>
-          <div class="service-tags"><span class="tag">Magento</span><span class="tag">PHP</span><span
-              class="tag">Elasticsearch</span><span class="tag">WMS integration</span></div>
+          <div class="svc-panel-label">
+            <span class="svc-panel-num">04</span>
+            <span class="svc-panel-title-v">E-commerce Storefronts</span>
+          </div>
+          <div class="svc-panel-content">
+            <span class="svc-panel-num-h">04</span>
+            <h3>E-commerce Storefronts</h3>
+            <p>Magento storefronts wired straight into your WMS and carrier pipeline from day one.</p>
+            <a href="#contact" class="svc-panel-cta">Talk to us<svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+          </div>
         </div>
-        <div class="service-card full fade-up">
-          <div class="service-num">05 / 05</div>
-          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+
+        <div class="svc-panel" data-index="4">
+          <div class="svc-panel-bg"><img
+              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop" alt=""
+              loading="lazy" /></div>
+          <div class="svc-panel-scrim"></div>
+          <div class="svc-panel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg></div>
-          <h3>AI-powered back-office tooling</h3>
-          <p>Internal tools that eliminate repetitive admin work. We built an AI chat application that automates product
-            description translation across multiple languages for a multi-country catalog — removing hours of manual
-            data entry every week. If you have a structured, repetitive back-office process, we can automate it.</p>
-          <div class="service-tags"><span class="tag">LLM integration</span><span class="tag">Multi-language</span><span
-              class="tag">Catalog automation</span><span class="tag">Internal tooling</span></div>
+          <div class="svc-panel-label">
+            <span class="svc-panel-num">05</span>
+            <span class="svc-panel-title-v">AI Back-Office</span>
+          </div>
+          <div class="svc-panel-content">
+            <span class="svc-panel-num-h">05</span>
+            <h3>AI Back-Office</h3>
+            <p>LLM tooling that translates and manages your catalog across languages — no manual entry.</p>
+            <a href="#contact" class="svc-panel-cta">Talk to us<svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+          </div>
         </div>
+
       </div>
-    </div>
-  </section>
 
-  <hr class="divider" />
-
-  <!-- WORK -->
-  <section id="work" class="work-section">
-    <div class="container">
-      <div class="work-header fade-up">
-        <div class="work-header-text">
-          <span class="section-eyebrow">Selected work</span>
-          <h2>8 applications. One long-term client. Every layer owned.</h2>
-        </div>
-        <a href="case-studies.html" class="view-all-link">View all case studies <svg viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2.5">
+      <div class="svc-footer-cta reveal-section">
+        <a href="case-studies.html" class="view-all-link">View all case studies
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg></a>
-      </div>
-
-      <div class="projects-bento fade-up">
-
-        <!-- HBS Packing — large -->
-        <a href="case-studies.html" class="proj proj-c7">
-          <div class="proj-index"><span>01 — Desktop App</span>
-            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
-              </svg></div>
-          </div>
-          <div class="proj-type">Shipping management</div>
-          <h3>HBS Packing Station</h3>
-          <p>A full WPF packing station desktop app — order retrieval, product scanning, live scale weight capture,
-            Zebra ZPL label printing, PostNL dispatch, and forced invoice verification. Used daily by warehouse
-            employees across three languages.</p>
-          <div class="proj-tags"><span class="tag">WPF / .NET 6</span><span class="tag">PostNL API</span><span
-              class="tag">Zebra ZPL</span><span class="tag">Serial port</span><span class="tag">SQL logging</span></div>
-          <div class="proj-outcome">Zero wrong-item dispatches after deployment</div>
+          </svg>
         </a>
-
-        <!-- WMS -->
-        <a href="case-studies.html" class="proj proj-c5">
-          <div class="proj-index"><span>02 — Web platform</span>
-            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
-              </svg></div>
-          </div>
-          <div class="proj-type">Warehouse Management</div>
-          <h3>Custom WMS Platform</h3>
-          <p>A purpose-built web WMS replacing a patchwork of spreadsheets and disconnected tools — full order
-            lifecycle, inventory tracking, user roles, and audit logging.</p>
-          <div class="proj-tags"><span class="tag">Web WMS</span><span class="tag">Order lifecycle</span><span
-              class="tag">Inventory</span></div>
-          <div class="proj-outcome">Single source of truth for all warehouse operations</div>
-        </a>
-
-        <!-- Android -->
-        <a href="case-studies.html" class="proj proj-c4">
-          <div class="proj-index"><span>03 — Android App</span>
-            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
-              </svg></div>
-          </div>
-          <div class="proj-type">Floor scanning</div>
-          <h3>Parcel Scanning App</h3>
-          <p>Native Android app for scanning and processing parcels on the warehouse floor — QR/barcode driven,
-            real-time sync, built for reliability under heavy daily use.</p>
-          <div class="proj-tags"><span class="tag">Android native</span><span class="tag">QR / barcode</span><span
-              class="tag">Real-time</span></div>
-          <div class="proj-outcome">Sub-second parcel updates across all devices</div>
-        </a>
-
-        <!-- Magento -->
-        <a href="case-studies.html" class="proj proj-c4">
-          <div class="proj-index"><span>04 — E-commerce</span>
-            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
-              </svg></div>
-          </div>
-          <div class="proj-type">Storefront</div>
-          <h3>Magento Brand Store</h3>
-          <p>New brand storefront on Magento, integrated directly with the WMS and carrier pipeline — orders flow from
-            checkout to dispatch without manual steps.</p>
-          <div class="proj-tags"><span class="tag">Magento</span><span class="tag">PHP</span><span
-              class="tag">WMS-connected</span></div>
-          <div class="proj-outcome">End-to-end automated order-to-ship flow</div>
-        </a>
-
-        <!-- AI Translation -->
-        <a href="case-studies.html" class="proj proj-c4">
-          <div class="proj-index"><span>05 — AI Tooling</span>
-            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
-              </svg></div>
-          </div>
-          <div class="proj-type">Back-office automation</div>
-          <h3>AI Translation App</h3>
-          <p>An LLM-powered chat tool that automates product description translation across multiple languages for a
-            multi-country catalog — eliminating hours of weekly admin work.</p>
-          <div class="proj-tags"><span class="tag">LLM / AI API</span><span class="tag">Multi-language</span><span
-              class="tag">Catalog</span></div>
-          <div class="proj-outcome">Hours of weekly catalog admin eliminated</div>
-        </a>
-
-        <!-- Elasticsearch -->
-        <a href="case-studies.html" class="proj proj-c4">
-          <div class="proj-index"><span>06 — Performance</span>
-            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
-              </svg></div>
-          </div>
-          <div class="proj-type">Search infrastructure</div>
-          <h3>Elasticsearch Implementation</h3>
-          <p>Implemented and tuned Elasticsearch inside the PHP platform — eliminating catalog indexing lag during peak
-            seasonal traffic.</p>
-          <div class="proj-tags"><span class="tag">Elasticsearch</span><span class="tag">PHP</span></div>
-          <div class="proj-outcome">Lag-free search under peak load</div>
-        </a>
-
-        <!-- Platform improvements -->
-        <a href="case-studies.html" class="proj proj-c4">
-          <div class="proj-index"><span>07 — Platform</span>
-            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
-              </svg></div>
-          </div>
-          <div class="proj-type">Web application</div>
-          <h3>Platform Improvements</h3>
-          <p>Ongoing PHP platform hardening — checkout logic, database query optimisation, and feature extensions as the
-            business scaled.</p>
-          <div class="proj-tags"><span class="tag">PHP</span><span class="tag">Performance</span><span
-              class="tag">Refactoring</span></div>
-          <div class="proj-outcome">Stable platform under growing order volume</div>
-        </a>
-
-        <!-- Internal tool -->
-        <a href="case-studies.html" class="proj proj-c4">
-          <div class="proj-index"><span>08 — Internal tool</span>
-            <div class="proj-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10" />
-              </svg></div>
-          </div>
-          <div class="proj-type">Operations tooling</div>
-          <h3>Internal Operations Tool</h3>
-          <p>Custom internal tool for the operations team — structured data flows, permissioned access, and process
-            automation tailored to their exact business requirements.</p>
-          <div class="proj-tags"><span class="tag">Internal</span><span class="tag">Permissions</span><span
-              class="tag">Automation</span></div>
-          <div class="proj-outcome">Reduced manual coordination overhead</div>
-        </a>
-
       </div>
     </div>
   </section>
@@ -1409,132 +287,259 @@
   <hr class="divider" />
 
   <!-- PROCESS -->
-  <section id="process">
+  <section id="process" class="process-section">
     <div class="container">
-      <span class="section-eyebrow fade-up">How it works</span>
-      <h2 class="section-title fade-up">From your first call to a running system</h2>
-      <p class="section-desc fade-up">A simple, low-overhead engagement for European businesses who need a reliable
-        long-term remote team — not a one-off contractor.</p>
-      <div class="process-grid">
-        <div class="process-step fade-up">
-          <div class="step-count">01</div>
+      <span class="section-eyebrow reveal-section">How it works</span>
+      <h2 class="section-title reveal-section">From your first call to a running system</h2>
+      <p class="section-desc reveal-section">A simple, low-overhead engagement for European businesses who need a
+        reliable long-term remote team — not a one-off contractor.</p>
+
+      <div class="process-cards reveal-stagger" id="processCards">
+
+        <div class="process-card">
+          <div class="process-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 5.5C3 4.67 3.67 4 4.5 4h2.1c.7 0 1.3.47 1.45 1.15l.75 3.3a1.5 1.5 0 01-.4 1.42l-1.3 1.3a12 12 0 006.7 6.7l1.3-1.3a1.5 1.5 0 011.42-.4l3.3.75c.68.15 1.15.75 1.15 1.45v2.1c0 .83-.67 1.5-1.5 1.5C10.5 21.5 2.5 13.5 2.5 5.5H3z" />
+            </svg>
+          </div>
+          <span class="process-card-num">01</span>
           <h3>Discovery call</h3>
-          <p>30 minutes. We understand your operation, your current tools, and where things break. No pitch — just
-            listening.</p>
+          <p>30 minutes. We understand your operation, your current tools, and where things break. No pitch —
+            just listening.</p>
         </div>
-        <div class="process-step fade-up">
-          <div class="step-count">02</div>
+
+        <div class="process-card">
+          <div class="process-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6 3h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 3v5h5M9 13h6M9 17h4" />
+            </svg>
+          </div>
+          <span class="process-card-num">02</span>
           <h3>Scope &amp; proposal</h3>
-          <p>We map your software needs, define what to build first, and give you a clear timeline with a fixed-scope
-            estimate.</p>
+          <p>We map your software needs, define what to build first, and give you a clear timeline with a
+            fixed-scope estimate.</p>
         </div>
-        <div class="process-step fade-up">
-          <div class="step-count">03</div>
+
+        <div class="process-card">
+          <div class="process-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+            </svg>
+          </div>
+          <span class="process-card-num">03</span>
           <h3>Build &amp; iterate</h3>
           <p>Bi-weekly demos, fast feedback loops, real delivery. We don't disappear for months between updates.</p>
         </div>
-        <div class="process-step fade-up">
-          <div class="step-count">04</div>
-          <h3>Ongoing partnership</h3>
+
+      </div>
+
+      <div class="process-wide reveal-section" id="processWide">
+        <div class="process-wide-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17 20.5c1.5 0 2.5-1.2 2.5-2.7 0-4.3-3.5-7.8-7.5-7.8s-7.5 3.5-7.5 7.8c0 1.5 1 2.7 2.5 2.7h10z" />
+            <circle cx="12" cy="6" r="2.5" />
+          </svg>
+        </div>
+
+        <div class="process-wide-text">
+          <span class="process-wide-eyebrow">04 — Ongoing partnership</span>
+          <h3>One team. Every system. For as long as you need us.</h3>
           <p>We stay on as your dedicated team — maintaining, improving, and scaling every system as your business
             grows.</p>
         </div>
+
+        <div class="process-wide-tags" id="processWideTags">
+          <span class="tag">WMS updates</span>
+          <span class="tag">Android app</span>
+          <span class="tag">API integrations</span>
+          <span class="tag">Bug fixes</span>
+          <span class="tag">New features</span>
+          <span class="tag">Server monitoring</span>
+          <span class="tag">Priority support</span>
+        </div>
       </div>
+
     </div>
   </section>
 
   <hr class="divider" />
 
-  <!-- WHY -->
-  <section>
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
     <div class="container">
-      <span class="section-eyebrow fade-up">Why Duoxsoft</span>
-      <h2 class="section-title fade-up">Not a generalist agency</h2>
-      <p class="section-desc fade-up">We work exclusively in logistics and supply chain software. That depth means
-        faster delivery, fewer questions, and a team that understands your problems before you explain them.</p>
-      <div class="why-grid">
-        <div class="why-card fade-up">
-          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-              <circle cx="12" cy="12" r="3" />
-              <path stroke-linecap="round" d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
-            </svg></div>
-          <h3>Deep domain focus</h3>
-          <p>Every project we take is in warehousing, fulfillment, or shipping. We've already built WMS platforms,
-            packing stations, scanner apps, Magento storefronts, and AI back-office tools — we speak your language from
-            day one.</p>
-        </div>
-        <div class="why-card fade-up">
-          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M16 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg></div>
-          <h3>Dedicated team model</h3>
-          <p>You get a consistent team — not a different contractor each sprint. We own your product like insiders,
-            carry full context, and stay through the entire lifecycle. Our current client has worked with the same team
-            for over two years.</p>
-        </div>
-        <div class="why-card fade-up">
-          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-              <circle cx="12" cy="12" r="10" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
-            </svg></div>
-          <h3>European morning overlap</h3>
-          <p>Our team overlaps with CET/CEST mornings — live standups, fast responses, real collaboration. No async
-            delays that slow your sprints or force you to wait until the next day for answers.</p>
-        </div>
-        <div class="why-card fade-up">
-          <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h10M4 18h6" />
-            </svg></div>
-          <h3>Full-stack, hardware to cloud</h3>
-          <p>Web apps, Android, WPF desktop, serial port hardware, carrier APIs, Elasticsearch, Magento, AI pipelines —
-            one team, one relationship, zero coordination overhead between vendors.</p>
+      <span class="section-eyebrow reveal-section">Our clients say</span>
+      <h2 class="section-title reveal-section">Feedback is the fuel we run on</h2>
+      <p class="section-desc reveal-section">Every system we ship comes from a long-term relationship. Here's what our
+        partners say.</p>
+
+      <div class="testi-viewport" id="testiViewport">
+        <div class="testi-track" id="testiTrack">
+          <div class="testi-card">
+            <h3>Mark van der Berg</h3><span class="testi-loc">Netherlands</span>
+            <p>Duoxsoft rebuilt our entire packing floor around one desktop app. Zero wrong-item dispatches since launch
+              — that alone paid for the project.</p>
+          </div>
+          <div class="testi-card">
+            <h3>Sofia Almeida</h3><span class="testi-loc">Portugal</span>
+            <p>They understood our warehouse before we finished explaining it. Fast standups, real delivery, no
+              disappearing for months.</p>
+          </div>
+          <div class="testi-card">
+            <h3>Tom Reilly</h3><span class="testi-loc">Ireland</span>
+            <p>The Android scanning app just works — heavy daily use, no crashes, real-time sync across the whole floor.
+            </p>
+          </div>
+          <div class="testi-card">
+            <h3>Elena Rossi</h3><span class="testi-loc">Italy</span>
+            <p>Our Magento store finally talks to our WMS without manual bridging. Orders flow straight through to
+              dispatch.</p>
+          </div>
+          <div class="testi-card">
+            <h3>Jonas Weber</h3><span class="testi-loc">Germany</span>
+            <p>Two years with the same team. They carry full context of our system — no re-explaining, no vendor churn.
+            </p>
+          </div>
+          <div class="testi-card" aria-hidden="true">
+            <h3>Mark van der Berg</h3><span class="testi-loc">Netherlands</span>
+            <p>Duoxsoft rebuilt our entire packing floor around one desktop app. Zero wrong-item dispatches since launch
+              — that alone paid for the project.</p>
+          </div>
+          <div class="testi-card" aria-hidden="true">
+            <h3>Sofia Almeida</h3><span class="testi-loc">Portugal</span>
+            <p>They understood our warehouse before we finished explaining it. Fast standups, real delivery, no
+              disappearing for months.</p>
+          </div>
+          <div class="testi-card" aria-hidden="true">
+            <h3>Tom Reilly</h3><span class="testi-loc">Ireland</span>
+            <p>The Android scanning app just works — heavy daily use, no crashes, real-time sync across the whole floor.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <hr class="divider" />
 
   <!-- CTA -->
   <section id="contact" class="cta-section">
-    <div class="cta-glow"></div>
+    <div class="cta-blend" aria-hidden="true"></div>
+    <div class="cta-orb cta-orb-1"></div>
+    <div class="cta-orb cta-orb-2"></div>
+    <div class="cta-orb cta-orb-3"></div>
+
     <div class="container">
-      <span class="section-eyebrow fade-up">Get in touch</span>
-      <h2 class="fade-up">Is your operation outgrowing its current software?</h2>
-      <p class="fade-up">Tell us what you're working with. We'll tell you honestly whether we can help — no pitch, no
-        pressure.</p>
-      <div class="contact-form fade-up">
-        <div class="form-row">
-          <label for="cf-name">Your name</label>
-          <input type="text" id="cf-name" placeholder="Jan de Vries" />
-          <span class="form-error" id="cf-name-error">Please enter your name.</span>
+      <div class="cta-grid">
+
+        <div class="cta-info reveal-section">
+          <span class="section-eyebrow">Get in touch</span>
+          <h2>Outgrowing your current software?</h2>
+          <p>Tell us what's breaking. We'll say honestly if we can help.</p>
+
+          <div class="cta-points">
+            <div class="cta-point"><span class="cta-point-dot"></span>1 business day reply</div>
+            <div class="cta-point"><span class="cta-point-dot"></span>Free 30-min call</div>
+            <div class="cta-point"><span class="cta-point-dot"></span>No pressure</div>
+          </div>
+
+          <div class="cta-icons">
+            <a href="mailto:hello@duoxsoft.com" class="cf-alt-icon" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16v16H4z" />
+                <path d="M4 6l8 7 8-7" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/duoxsoft/" target="_blank" rel="noopener" class="cf-alt-icon"
+              aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 8.98h4v12H3v-12zm7 0h3.83v1.64h.05c.53-.98 1.83-2.02 3.77-2.02 4.03 0 4.77 2.53 4.77 5.82v6.56h-4v-5.82c0-1.39-.03-3.18-1.98-3.18-1.98 0-2.28 1.5-2.28 3.08v5.92h-4v-12z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/XXXXXXXXXXX" target="_blank" rel="noopener" class="cf-alt-icon"
+              aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.7.44 3.36 1.28 4.83L2 22l5.42-1.37a9.9 9.9 0 004.62 1.15h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2zm5.79 13.99c-.24.68-1.4 1.31-1.93 1.35-.5.05-1.05.07-1.7-.11-.39-.11-.9-.28-1.54-.55-2.72-1.17-4.49-3.9-4.63-4.08-.14-.19-1.1-1.47-1.1-2.8 0-1.33.7-1.98.95-2.25.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.17.01.38-.06.6.46.24.55.79 1.9.86 2.04.07.14.11.3.02.49-.09.19-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.14.44.2.5.31.06.11.06.63-.18 1.31z" />
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="form-row">
-          <label for="cf-company">Company &amp; country</label>
-          <input type="text" id="cf-company" placeholder="Acme Fulfillment — Netherlands" />
-          <span class="form-error" id="cf-company-error">Please enter your company and country.</span>
+
+        <div class="contact-form reveal-section" id="ctaForm">
+          <div class="cf-fields" id="cfFields">
+
+            <div class="cf-row-2">
+              <div class="form-row">
+                <label for="cf-name">Full name</label>
+                <input type="text" id="cf-name" placeholder="Enter your full name" />
+                <span class="form-error" id="cf-name-error">Please enter your name.</span>
+              </div>
+              <div class="form-row">
+                <label for="cf-email">E-mail</label>
+                <input type="email" id="cf-email" placeholder="Email Address" />
+                <span class="form-error" id="cf-email-error">Please enter a valid email address.</span>
+              </div>
+            </div>
+
+            <div class="cf-row-2">
+              <div class="form-row">
+                <label for="cf-company">Company name</label>
+                <input type="text" id="cf-company" placeholder="Tell us your company name" />
+                <span class="form-error" id="cf-company-error">Please enter your company and country.</span>
+              </div>
+              <div class="form-row">
+                <label for="cf-phone">Phone number (optional)</label>
+                <input type="text" id="cf-phone" placeholder="Enter your mobile number" />
+              </div>
+            </div>
+
+            <div class="cf-row-2 cf-row-2-channel">
+              <div class="form-row">
+                <label>What communication channel do you prefer?</label>
+                <div class="cf-radio-group cf-radio-group-stacked">
+                  <label class="cf-radio"><input type="radio" name="channel" checked /> Email</label>
+                  <label class="cf-radio"><input type="radio" name="channel" /> Phone Call</label>
+                  <label class="cf-radio"><input type="radio" name="channel" /> Whatsapp</label>
+                  <!-- <label class="cf-radio"><input type="radio" name="channel" /> Telegram</label> -->
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="cf-msg">Message (optional)</label>
+                <textarea id="cf-msg" class="cf-msg-tall" placeholder="Tell us your project or request"></textarea>
+                <span class="form-error" id="cf-msg-error">Please tell us a bit about your setup.</span>
+              </div>
+            </div>
+
+            <div class="cf-row-2 cf-submit-row">
+              <button class="btn-primary btn-full" type="button" id="cf-submit">
+                <span class="btn-label">Send</span>
+              </button>
+              <p class="form-note cf-consent">By clicking this button you agree to share your data with
+                <strong>Duoxsoft</strong>. Information will be used for communication purposes only.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="cf-success" id="cfSuccess">
+            <svg class="cf-check" viewBox="0 0 52 52">
+              <circle class="cf-check-circle" cx="26" cy="26" r="24" fill="none" />
+              <path class="cf-check-mark" fill="none" d="M14 27l7 7 16-16" />
+            </svg>
+            <h3>Message ready</h3>
+            <p>Opening your email client now…</p>
+          </div>
         </div>
-        <div class="form-row">
-          <label for="cf-email">Work email</label>
-          <input type="email" id="cf-email" placeholder="jan@acmefulfillment.nl" />
-          <span class="form-error" id="cf-email-error">Please enter a valid email address.</span>
-        </div>
-        <div class="form-row">
-          <label for="cf-msg">Describe your current setup</label>
-          <textarea id="cf-msg"
-            placeholder="What tools are you using today? What's not working? What do you need built?"></textarea>
-          <span class="form-error" id="cf-msg-error">Please tell us a bit about your setup.</span>
-        </div>
-        <button class="btn-primary btn-full" type="button" id="cf-submit">Send message <svg viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg></button>
-        <p class="form-note">We respond within 1 business day.</p>
+
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <p style="color:var(--muted);">&copy; 2026 Duoxsoft. Logistics software specialists.</p>
@@ -1542,72 +547,10 @@
           href="mailto:hello@duoxsoft.com">hello@duoxsoft.com</a></div>
     </div>
   </footer>
-
-  <script>
-
-
-    const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.08 });
-    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-
-
-    const cfFields = ['cf-name', 'cf-company', 'cf-email', 'cf-msg'];
-
-    function validateField(id) {
-      const el = document.getElementById(id);
-      const errorEl = document.getElementById(id + '-error');
-      const value = el.value.trim();
-      let valid = true;
-
-      if (!value) {
-        valid = false;
-      } else if (id === 'cf-email') {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        valid = emailPattern.test(value);
-      }
-
-      el.classList.toggle('error', !valid);
-      errorEl.classList.toggle('visible', !valid);
-      return valid;
-    }
-
-    // Clear error as soon as the visitor starts fixing the field
-    cfFields.forEach(id => {
-      document.getElementById(id).addEventListener('input', () => validateField(id));
-    });
-
-    document.getElementById('cf-submit').addEventListener('click', function () {
-      const results = cfFields.map(validateField);
-      if (results.includes(false)) return;
-
-      const name = document.getElementById('cf-name').value.trim();
-      const company = document.getElementById('cf-company').value.trim();
-      const email = document.getElementById('cf-email').value.trim();
-      const msg = document.getElementById('cf-msg').value.trim();
-
-      const subject = `New inquiry from ${name} — ${company}`;
-      const body =
-        `Name: ${name}\n` +
-        `Company & Country: ${company}\n` +
-        `Email: ${email}\n\n` +
-        `Message:\n${msg}`;
-
-      const mailtoLink = `mailto:info@duoxsoft.pk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoLink;
-    });
-
-
-
-  </script>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-93G0XGRQZ2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-93G0XGRQZ2');
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/interactions.js" defer></script>
 </body>
 
 </html>
