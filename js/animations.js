@@ -162,7 +162,7 @@
         const isActive = Number(m.dataset.case) === index;
         gsap.to(m, { opacity: isActive ? 1 : 0, duration: DUR, ease: EASE, overwrite: true });
         if (isActive) gsap.fromTo(m, { scale: 1.1 }, { scale: 1.04, duration: 6, ease: 'sine.out', overwrite: 'auto' });
-        if (m.tagName === 'VIDEO') isActive ? m.play().catch(() => {}) : m.pause();
+        if (m.tagName === 'VIDEO') isActive ? m.play().catch(() => { }) : m.pause();
       });
 
       // outcome text — small delayed fade
@@ -225,6 +225,23 @@
       stagger: 0.06,
       scrollTrigger: { trigger: wide, start: 'top 80%', toggleActions: 'play none none none' }
     });
+  })();
+
+  /* ── TECH STACK — magnetic hub ── */
+  (function techStackHub() {
+    const hub = document.getElementById('tstackHub');
+    if (!hub || !window.matchMedia('(hover: hover)').matches) return;
+
+    const core = hub.querySelector('.tstack-hub-core');
+    const moveX = gsap.quickTo(core, 'x', { duration: 0.5, ease: 'power3.out' });
+    const moveY = gsap.quickTo(core, 'y', { duration: 0.5, ease: 'power3.out' });
+
+    hub.addEventListener('mousemove', (e) => {
+      const rect = hub.getBoundingClientRect();
+      moveX((e.clientX - rect.left - rect.width / 2) * 0.2);
+      moveY((e.clientY - rect.top - rect.height / 2) * 0.2);
+    });
+    hub.addEventListener('mouseleave', () => { moveX(0); moveY(0); });
   })();
 
   /* ── TESTIMONIALS — steps one card at a time, autoplay, pauses on hover/focus ── */
