@@ -408,6 +408,41 @@
             max-width: 700px;
         }
 
+        /* STAT STRIP (numbers snapshot inside a case study) */
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            max-width: 900px;
+            margin-top: 0.5rem;
+        }
+
+        .stat-strip-item {
+            background: var(--bg-2);
+            padding: 1.1rem 1rem;
+        }
+
+        .stat-strip-num {
+            display: block;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 0.35rem;
+        }
+
+        .stat-strip-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted-2);
+            line-height: 1.5;
+        }
+
         /* PARTNERSHIP SECTION */
         .partnership-section {
             max-width: 900px;
@@ -519,6 +554,10 @@
             .partnership-list {
                 grid-template-columns: 1fr;
             }
+
+            .stat-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media(max-width:640px) {
@@ -540,6 +579,10 @@
 
             .case-studies-grid {
                 gap: 3rem;
+            }
+
+            .stat-strip {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -572,22 +615,21 @@
             <div class="hero-content fade-up">
                 <div class="hero-eyebrow"><span class="dot"></span>Real Operational Impact</div>
                 <h1>Software Built Around Real Warehouse &amp; Fulfillment Challenges</h1>
-                <p class="hero-desc">For the past three years, Duoxsoft has worked as a dedicated engineering partner
-                    for
+                <p class="hero-desc">For the past two years, Duoxsoft has worked as a dedicated engineering partner for
                     a European fulfillment operation, building systems that support warehouse workflows, shipping,
                     ecommerce, search and internal automation.</p>
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-label">3+ Years<br>Partnership</div>
+                        <div class="stat-label">100K+ Orders<br>Processed</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-label">8+ Production<br>Applications</div>
+                        <div class="stat-label">52 Countries<br>Shipped To</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-label">Web • Mobile<br>Desktop</div>
+                        <div class="stat-label">99%+ Shipment<br>Accuracy</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-label">AI • Search<br>Integrations</div>
+                        <div class="stat-label">2+ Years<br>Partnership</div>
                     </div>
                 </div>
             </div>
@@ -621,7 +663,8 @@
                             <li>Product scanning and validation</li>
                             <li>Package weighing</li>
                             <li>Zebra label printing</li>
-                            <li>Carriers integration (DPD, Spring, POSTNL, DHL)</li>
+                            <li>PostNL integration</li>
+                            <li>Automated customs paperwork for international shipments</li>
                             <li>Multi-language support</li>
                             <li>Shipment tracking</li>
                             <li>Order management workflows</li>
@@ -629,12 +672,56 @@
                     </div>
 
                     <div class="case-study-section">
+                        <h3>By The Numbers</h3>
+                        <p>Two years in production, still running as the operational backbone of the warehouse:</p>
+                        <div class="stat-strip">
+                            <div class="stat-strip-item">
+                                <span class="stat-strip-num">100K+</span>
+                                <span class="stat-strip-label">Orders Processed To Date</span>
+                            </div>
+                            <div class="stat-strip-item">
+                                <span class="stat-strip-num">52</span>
+                                <span class="stat-strip-label">Countries Shipped To</span>
+                            </div>
+                            <div class="stat-strip-item">
+                                <span class="stat-strip-num">99%+</span>
+                                <span class="stat-strip-label">Shipment Accuracy</span>
+                            </div>
+                            <div class="stat-strip-item">
+                                <span class="stat-strip-num">&lt;1 min</span>
+                                <span class="stat-strip-label">Pack &amp; Ship Time, Down From ~5 Min</span>
+                            </div>
+                            <div class="stat-strip-item">
+                                <span class="stat-strip-num">3x</span>
+                                <span class="stat-strip-label">Order Volume Growth, Same Headcount</span>
+                            </div>
+                            <div class="stat-strip-item">
+                                <span class="stat-strip-num">4x</span>
+                                <span class="stat-strip-label">Peak Season Load Handled</span>
+                            </div>
+
+                            <div class="stat-strip-item">
+                                <span class="stat-strip-num">99%+</span>
+                                <span class="stat-strip-label">Uptime, Automated AWS Updates</span>
+                            </div>
+                            <div class="stat-strip-item">
+                                <span class="stat-strip-num">2</span>
+                                <span class="stat-strip-label">Maintenance Incidents In A Full Year</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="case-study-section">
                         <h3>Operational Impact</h3>
                         <ul class="impact-list">
-                            <li>Reduced manual handling during shipment preparation</li>
-                            <li>Centralized warehouse packing workflows</li>
-                            <li>Improved shipment accuracy</li>
-                            <li>Eliminated repetitive data entry</li>
+                            <li>Pack-and-ship time per order cut from around 5 minutes to under 1 minute</li>
+                            <li>Customs paperwork for international orders now generated automatically, removing a
+                                manual bottleneck on every cross-border shipment</li>
+                            <li>Shipment accuracy above 99% since launch, down from frequent manual errors</li>
+                            <li>Shipping-related customer complaints cut by roughly 50%</li>
+                            <li>Order volume has tripled with no increase in packing headcount</li>
+                            <li>System handles 4x normal volume during peak season without issues</li>
+                            <li>Used daily by the full warehouse team, five days a week</li>
                             <li>Supported multi-language warehouse teams</li>
                         </ul>
                     </div>
@@ -647,6 +734,7 @@
                             <span class="tag">PostNL API</span>
                             <span class="tag">Zebra Printers</span>
                             <span class="tag">SQL Server</span>
+                            <span class="tag">AWS</span>
                         </div>
                     </div>
                 </div>
@@ -708,10 +796,12 @@
                     <div class="case-study-section">
                         <h3>Operational Impact</h3>
                         <ul class="impact-list">
-                            <li>Reduced translation workload</li>
-                            <li>Lower operational costs</li>
-                            <li>Faster catalog management</li>
-                            <li>Scalable multilingual workflow</li>
+                            <li>Replaced an outsourced manual translation service that previously cost more than
+                                €20,000 per year</li>
+                            <li>Translation turnaround now roughly 3x faster, in line with the team's overall
+                                automation gains</li>
+                            <li>Faster catalog management and product onboarding</li>
+                            <li>Scalable multilingual workflow with minimal manual intervention</li>
                         </ul>
                     </div>
 
